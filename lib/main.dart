@@ -41,7 +41,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       bottom: new TabBar(
         controller: controller,
         tabs: <Widget>[
-          new Tab(text: "My Parcels",),
+          new Tab(text: "My Parcels1",),
           new Tab(text: "My Trips",),
           new Tab(text: "Search Traveler",),
         ],
