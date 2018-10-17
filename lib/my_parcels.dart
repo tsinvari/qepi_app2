@@ -97,6 +97,7 @@ class Parcels extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                       child: new ListTile(
+                        onTap: null,
                         title: new Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
