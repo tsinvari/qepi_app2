@@ -28,7 +28,7 @@ class Parcels extends StatelessWidget {
                           //stops: [0.1, 0.5, 0.7, 0.9],
                           colors: [
                             const Color(0xFFffd85f),
-                            const Color(0xFFf0a043),
+                            const Color(0xFFF09731),
                           ],
                         ),
                         border: new Border.all(color: Colors.white, width: 2.0),
@@ -51,8 +51,9 @@ class Parcels extends StatelessWidget {
               new Container(
                /* height: 50.0,
                 width: 400.0,*/
-                padding: const EdgeInsets.symmetric(horizontal: 3.0),
+               padding: const EdgeInsets.symmetric(horizontal: 15.0),
                child: new Row(
+                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: <Widget>[
                    new Flexible(
                      child:
@@ -86,30 +87,42 @@ class Parcels extends StatelessWidget {
                           children: <Widget>[
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                new Text("Origen "),
-                                new Text("______"),
+                                new Text("Origen ",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text("______" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Icon(Icons.flight),
-                                new Text("______"),
-                                new Text(" Destino"),
+                                new Text("______",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text(" Destino",style: new TextStyle(color: const Color(0xFF5A5958),),),
                               ],
                             ),
                             new Row(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 new Icon(Icons.calendar_view_day, color: const Color(0xFF5a5859),),
-                                new Text(" 5 Kg  "),
+                                new Text("5 Kg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson-Regular"),),
                                 new Icon(Icons.inbox, color: const Color(0xFF5a5859),),
-                                new Text(" 7  "),
+                                new Text("7",style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Icon(Icons.calendar_today, color: const Color(0xFF5a5859),),
-                                new Text(" 3/Nov/18 "),
+                                new Text("3/Nov/18",style: new TextStyle(color: const Color(0xFF5A5958),),),
                               ],
                             ),
                           ],
                         ),
-                        trailing: new Icon(Icons.markunread_mailbox, color: const Color(0xFF5a5859), size: 20.0,),
+                        trailing: new Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            new Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                new Icon(Icons.markunread_mailbox, color: const Color(0xFF5a5859), size: 20.0,),
+                                new Text("Draft"),
+                              ],
+                            ),
+                            new Icon(Icons.arrow_right),
+                          ],
+                        )
                       ),
                   );
                 },

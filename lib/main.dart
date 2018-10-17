@@ -42,13 +42,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       //backgroundColor: const Color(0xFFf0a043),
       backgroundColor: Colors.white,
       title: new Text("Q'epi",
-        style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFf0a043)),),
-      iconTheme: new IconThemeData(color: const Color(0xFFf0a043)),
+        style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731)),),
+      iconTheme: new IconThemeData(color: const Color(0xFFF09731)),
       bottom: new TabBar(
         controller: controller,
-        labelColor: const Color(0xFFf0a043),
+        labelColor: const Color(0xFFF09731),
         labelStyle: TextStyle(fontWeight: FontWeight.bold),
-        indicatorColor: const Color(0xFFf0a043),
+        indicatorColor: const Color(0xFFF09731),
         tabs: <Widget>[
           new Tab(text: "My Parcels",),
           new Tab(text: "My Trips",),
