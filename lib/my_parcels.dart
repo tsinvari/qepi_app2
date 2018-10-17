@@ -31,7 +31,7 @@ class Parcels extends StatelessWidget {
               ),*/
             new Center(
               child: new Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 2.0),
                 child: new Material(
                   child: new InkWell(
                     onTap: () => print('create'),
@@ -70,7 +70,7 @@ class Parcels extends StatelessWidget {
               new Container(
                /* height: 50.0,
                 width: 400.0,*/
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(horizontal: 3.0),
                child: new Row(
                  children: <Widget>[
                    new Flexible(
@@ -89,57 +89,46 @@ class Parcels extends StatelessWidget {
             new Expanded(
               flex: 20,
               child: new Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 2.0),
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
                   itemExtent: 100.0,
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
-                      child: new RaisedButton(
-                          onPressed: null,
-                        disabledColor: Colors.white,
-                        child: new Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                      child: new ListTile(
+                        title: new Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
-                            new ListTile(
-                              leading: new Column(
-
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                  new Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      new Text("Origen "),
-                                      new Text("______"),
-                                      new Icon(Icons.flight),
-                                      new Text("______"),
-                                      new Text(" Destino"),
-                                    ],
-                                  ),
-                                  new Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    //crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      new Icon(Icons.calendar_view_day, color: const Color(0xFF5a5859),),
-                                      new Text(" 5 Kg  "),
-                                      new Icon(Icons.inbox, color: const Color(0xFF5a5859),),
-                                      new Text(" 7  "),
-                                      new Icon(Icons.calendar_today, color: const Color(0xFF5a5859),),
-                                      new Text(" 3/Nov/18 "),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              trailing: new Icon(Icons.markunread_mailbox, color: const Color(0xFF5a5859), size: 20.0,),
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                new Text("Origen "),
+                                new Text("______"),
+                                new Icon(Icons.flight),
+                                new Text("______"),
+                                new Text(" Destino"),
+                              ],
+                            ),
+                            new Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                new Icon(Icons.calendar_view_day, color: const Color(0xFF5a5859),),
+                                new Text(" 5 Kg  "),
+                                new Icon(Icons.inbox, color: const Color(0xFF5a5859),),
+                                new Text(" 7  "),
+                                new Icon(Icons.calendar_today, color: const Color(0xFF5a5859),),
+                                new Text(" 3/Nov/18 "),
+                              ],
                             ),
                           ],
                         ),
-                      )
+                        trailing: new Icon(Icons.markunread_mailbox, color: const Color(0xFF5a5859), size: 20.0,),
+                      ),
                   );
                 },
               ),),)
