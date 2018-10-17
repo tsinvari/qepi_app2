@@ -68,19 +68,22 @@ class Parcels extends StatelessWidget {
             ),
 
               new Container(
-                height: 50.0,
-                width: 400.0,
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: new Flex(
-                  direction: Axis.vertical,
-                  children: <Widget>[
-                    new TextField(
-                      decoration: new InputDecoration(
-                          hintText: "Search"
-                      ),
-                    ),
-                  ],
-                ),
+               /* height: 50.0,
+                width: 400.0,*/
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+               child: new Row(
+                 children: <Widget>[
+                   new Flexible(
+                     child:
+                     new TextField(
+                       decoration: new InputDecoration(
+                           hintText: "Search"
+                       ),
+                     ),
+                   ),
+                   new Icon(Icons.search),
+                 ],
+               )
                 ),
 
             new Expanded(
