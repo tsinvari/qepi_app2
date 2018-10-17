@@ -68,6 +68,7 @@ class Parcels extends StatelessWidget {
                )
                 ),
 
+
             new Expanded(
               flex: 20,
               child: new Container(
