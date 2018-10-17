@@ -31,6 +31,7 @@ class Parcels extends StatelessWidget {
               ),*/
             new Center(
               child: new Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: new Material(
                   child: new InkWell(
                     onTap: () => print('create'),
@@ -65,14 +66,27 @@ class Parcels extends StatelessWidget {
                 //color: const Color(0xFFffd85f),
               ),
             ),
-            new TextField(
+
+              new Container(
+                height: 50.0,
+                width: 400.0,
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: new Flex(
+                  direction: Axis.vertical,
+                  children: <Widget>[
+                    new TextField(
                       decoration: new InputDecoration(
                           hintText: "Search"
                       ),
                     ),
+                  ],
+                ),
+                ),
+
             new Expanded(
               flex: 20,
               child: new Container(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
                   itemCount: 10,
@@ -93,9 +107,9 @@ class Parcels extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       new Text("Origen "),
-                                      new Text("____________"),
+                                      new Text("______"),
                                       new Icon(Icons.flight),
-                                      new Text("____________"),
+                                      new Text("______"),
                                       new Text(" Destino"),
                                     ],
                                   ),
