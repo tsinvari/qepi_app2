@@ -34,14 +34,23 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context){
+    var drawer = new Drawer();
+
     return new Scaffold(
+      drawer: drawer,
     appBar: new AppBar(
-      backgroundColor: Colors.amber,
-      title: new Text("Q'epi",),
+      //backgroundColor: const Color(0xFFf0a043),
+      backgroundColor: Colors.white,
+      title: new Text("Q'epi",
+        style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFf0a043)),),
+      iconTheme: new IconThemeData(color: const Color(0xFFf0a043)),
       bottom: new TabBar(
         controller: controller,
+        labelColor: const Color(0xFFf0a043),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+        indicatorColor: const Color(0xFFf0a043),
         tabs: <Widget>[
-          new Tab(text: "My Parcels1",),
+          new Tab(text: "My Parcels",),
           new Tab(text: "My Trips",),
           new Tab(text: "Search Traveler",),
         ],
