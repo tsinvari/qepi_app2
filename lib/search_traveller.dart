@@ -9,18 +9,59 @@ class Search extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            new Text("Search Traveler", style: new TextStyle(fontSize: 30.0),),
-            new TextField(
-              decoration: new InputDecoration(
-                hintText: "Origen",
+            new Container(
+              //width: 260.0,
+              //height: 160.0,
+        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+              decoration: new BoxDecoration(
+                //color: const Color(0xFFffd85f),
+                gradient: new LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  //stops: [0.1, 0.5, 0.7, 0.9],
+                  colors: [
+                    const Color(0xFFffd85f),
+                    const Color(0xFFf0a043),
+                  ],
+                ),
+                border: new Border.all(color: Colors.white, width: 2.0),
+                borderRadius: new BorderRadius.circular(10.0),
               ),
+                child: new Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new Container(
+                        width: 160.0,
+                        height: 120.0,
+                        padding: const EdgeInsets.all(3.0),
+                        child:
+                        new Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            new TextField(
+                              decoration: new InputDecoration(
+                                  hintText: "Origen"
+                              ),
+                            ),
+                            new TextField(
+                              decoration: new InputDecoration(
+                                  hintText: "Destino"
+                              ),
+                            ),
+                            new Icon(Icons.arrow_drop_down),
+                          ],
+                        ),
+                      )
+
+                    ),
+                    new Icon(Icons.swap_vert,)
+                  ],
+                ),
             ),
-            new TextField(
-              decoration: new InputDecoration(
-                  hintText: "destino"
-              ),
-            ),
-            new Icon(Icons.arrow_drop_down),
+
             new Expanded(
                 child: new ListView.builder(
                   itemCount: 7,

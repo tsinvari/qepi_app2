@@ -11,24 +11,6 @@ class Parcels extends StatelessWidget {
 
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            /*new RaisedButton(
-                onPressed: null,
-                color: Colors.red,
-                disabledColor: const Color(0xFFffd85f),
-                highlightColor: Colors.black,
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(5.0)),
-                disabledTextColor: Colors.white,
-                textColor: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    new Icon(Icons.inbox, size: 35.0,),
-                    new Text("Create Parcel",
-                      style: new TextStyle(fontSize: 25.0, color: Colors.white),)
-                  ],
-                ),
-              ),*/
             new Center(
               child: new Container(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -63,7 +45,6 @@ class Parcels extends StatelessWidget {
                   ),
                   color: Colors.transparent,
                 ),
-                //color: const Color(0xFFffd85f),
               ),
             ),
 
