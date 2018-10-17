@@ -92,6 +92,7 @@ class Parcels extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
+                  itemExtent: 100.0,
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
@@ -99,10 +100,13 @@ class Parcels extends StatelessWidget {
                           onPressed: null,
                         disabledColor: Colors.white,
                         child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             new ListTile(
                               leading: new Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
