@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+class VerticalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 50.0,
+      width: 0.6,
+      color: const Color(0xFFF09731),
+      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+    );
+  }
+}
+
 class Parcels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,12 +20,11 @@ class Parcels extends StatelessWidget {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             new Center(
               child: new Container(
-                padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                 child: new Material(
                   child: new InkWell(
                     onTap: () => print('create'),
@@ -39,12 +50,14 @@ class Parcels extends StatelessWidget {
                           style: new TextStyle(
                               fontSize: 15.0,
                               fontWeight: FontWeight.bold,
+                              fontFamily: "Gibson",
                               color: Colors.white),),
                       ),
                     ),
                   ),
                   color: Colors.transparent,
                 ),
+                //color: const Color(0xFFF09731),
               ),
             ),
 
@@ -57,26 +70,29 @@ class Parcels extends StatelessWidget {
                  children: <Widget>[
                    new Flexible(
                      child:
-                     new TextField(
+                     new TextFormField(
                        decoration: new InputDecoration(
-                           hintText: "Search"
+                           hintText: "Search",
+                           hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
+                           border: InputBorder.none,
+                           //labelText: "Search",
+                           //labelStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
                        ),
+                       style: new TextStyle(fontFamily: "Gibson", color: const Color(0xFF5A5958),),
                      ),
                    ),
-                   new Icon(Icons.search),
+                   new Icon(Icons.search, color: const Color(0xFFB9B9B9)),
                  ],
                )
                 ),
-
-
             new Expanded(
               flex: 20,
               child: new Container(
-                padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                padding: const EdgeInsets.symmetric(horizontal: 3.0),
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
                   itemExtent: 100.0,
-                  itemCount: 10,
+                  itemCount: 5,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                       child: new ListTile(
@@ -90,23 +106,23 @@ class Parcels extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                new Text("Origen ",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
                                 new Text("______" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                new Icon(Icons.flight),
+                                new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
                                 new Text("______",style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                new Text(" Destino",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
                               ],
                             ),
                             new Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                new Icon(Icons.calendar_view_day, color: const Color(0xFF5a5859),),
-                                new Text("5 Kg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson-Regular"),),
-                                new Icon(Icons.inbox, color: const Color(0xFF5a5859),),
-                                new Text("7",style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                new Icon(Icons.calendar_today, color: const Color(0xFF5a5859),),
-                                new Text("3/Nov/18",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                new Text("5 Kg     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
+                                new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                new Text("7     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
+                                new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                new Text("3/Nov/18     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
                               ],
                             ),
                           ],
@@ -114,14 +130,15 @@ class Parcels extends StatelessWidget {
                         trailing: new Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
+                            new VerticalDivider(),
                             new Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                new Icon(Icons.markunread_mailbox, color: const Color(0xFF5a5859), size: 20.0,),
-                                new Text("Draft"),
+                                new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), color: const Color(0xFF5A5958), size: 30.0,),
+                                new Text("Draft",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 13.0,),),
                               ],
                             ),
-                            new Icon(Icons.arrow_right),
+                            new Icon(Icons.arrow_right, color: const Color(0xFFF09731),),
                           ],
                         )
                       ),

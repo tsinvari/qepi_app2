@@ -6,6 +6,7 @@ import './search_traveller.dart' as searchview;
 
 void main(){
   runApp(new MaterialApp(
+    theme: ThemeData(fontFamily: 'Gibson'),
     title: "Tab Bar",
     home: new Home(),
   ));
@@ -38,7 +39,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
     return new Scaffold(
       drawer: drawer,
-    appBar: new AppBar(
+      appBar: new AppBar(
       //backgroundColor: const Color(0xFFf0a043),
       backgroundColor: Colors.white,
       title: new Text("Q'epi",
@@ -47,12 +48,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       bottom: new TabBar(
         controller: controller,
         labelColor: const Color(0xFFF09731),
-        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+        unselectedLabelColor: const Color(0xFF9A9A9A),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold,fontFamily: "Gibson",fontSize: 14.0),
         indicatorColor: const Color(0xFFF09731),
         tabs: <Widget>[
           new Tab(text: "My Parcels",),
-          new Tab(text: "My Trips",),
           new Tab(text: "Search Traveler",),
+          new Tab(text: "My Trips",),
         ],
       ),
     ),
@@ -61,8 +63,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       controller: controller,
         children: <Widget>[
           new parcelsview.Parcels(),
-          new tripsview.Trips(),
           new searchview.Search(),
+          new tripsview.Trips(),
         ],
       ),
 
