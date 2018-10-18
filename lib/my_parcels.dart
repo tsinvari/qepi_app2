@@ -107,9 +107,9 @@ class Parcels extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
                                 new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
-                                new Text("______" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text("___" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
-                                new Text("______",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                new Text("___",style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
                               ],
                             ),

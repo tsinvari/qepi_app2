@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class Search extends StatelessWidget {
+
+  DateTime _date = new DateTime.now();
+  TimeOfDay _time = new TimeOfDay.now();
+
+  Future <Null> _selectDate (BuildContext context) async {
+    final DateTime picked = await showDatePicker(context: context,
+        initialDate: _date,
+        firstDate: new DateTime(2017),
+        lastDate: new DateTime(2019));
+
+  }
   @override
   Widget build(BuildContext context) {
     return new Container(
       child: new Center(
         child: new Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             new Container(
@@ -27,28 +39,73 @@ class Search extends StatelessWidget {
                 border: new Border.all(color: Colors.white, width: 2.0),
                 borderRadius: new BorderRadius.circular(10.0),
               ),
-                child: new Row(
+                child: new ExpansionTile(
+                  initiallyExpanded: false,
+                  title: new Column(
+                    children: <Widget>[
+                      new Text ("Origen"),
+                      new Text ("Destino"),
+                    ],
+                  )
+                  children: <Widget>[
+                    new TextFormField(
+                      decoration: new InputDecoration(
+                        hintText: "Origen",
+                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                    new TextFormField(
+                      decoration: new InputDecoration(
+                        hintText: "Destino",
+                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
+                        border: InputBorder.none,
+                      ),
+                    ),
+                    new Row(
+                      children: <Widget>[
+                        new Text("Fecha"),
+                        new IconButton(icon: new Icon(Icons.calendar_view_day,), onPressed: (){_selectDate(context);}),
+                      ],
+                    ),
+                    new Row(
+                      children: <Widget>[
+                        new Text("Peso"),
+                        new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null)
+                      ],
+                    ),
+
+
+                  ],
+
+                )
+                /*new Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     new Flexible(
                       child: new Container(
                         width: 160.0,
-                        height: 120.0,
+                        height: 160.0,
                         padding: const EdgeInsets.all(3.0),
                         child:
                         new Column(
                           mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new TextField(
+                            new TextFormField(
                               decoration: new InputDecoration(
-                                  hintText: "Origen"
+                                labelText: "Origen",
+                                labelStyle: new TextStyle(fontSize: 10.0),
+                                border: InputBorder.none,
                               ),
+                              style: new TextStyle(fontSize: 13.0),
                             ),
-                            new TextField(
+                            new TextFormField(
                               decoration: new InputDecoration(
-                                  hintText: "Destino"
+                                labelText: "Destino",
+                                labelStyle: new TextStyle(fontSize: 10.0),
+                                border: InputBorder.none,
                               ),
                             ),
                             new Icon(Icons.arrow_drop_down),
@@ -59,7 +116,7 @@ class Search extends StatelessWidget {
                     ),
                     new Icon(Icons.swap_vert,)
                   ],
-                ),
+                ),*/
             ),
 
             new Expanded(
