@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+class VerticalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 50.0,
+      width: 0.6,
+      color: const Color(0xFFF09731),
+      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+    );
+  }
+}
+
 class Search extends StatelessWidget {
 
   DateTime _date = new DateTime.now();
@@ -26,8 +38,8 @@ class Search extends StatelessWidget {
               //height: 160.0,
         padding: const EdgeInsets.symmetric(horizontal: 3.0),
               decoration: new BoxDecoration(
-                //color: const Color(0xFFffd85f),
-                gradient: new LinearGradient(
+                color: const Color(0xFFF09731),
+               /* gradient: new LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   //stops: [0.1, 0.5, 0.7, 0.9],
@@ -35,7 +47,7 @@ class Search extends StatelessWidget {
                     const Color(0xFFffd85f),
                     const Color(0xFFf0a043),
                   ],
-                ),
+                ),*/
                 border: new Border.all(color: Colors.white, width: 2.0),
                 borderRadius: new BorderRadius.circular(10.0),
               ),
@@ -46,7 +58,7 @@ class Search extends StatelessWidget {
                       new Text ("Origen"),
                       new Text ("Destino"),
                     ],
-                  )
+                  ),
                   children: <Widget>[
                     new TextFormField(
                       decoration: new InputDecoration(
@@ -120,37 +132,44 @@ class Search extends StatelessWidget {
             ),
 
             new Expanded(
+              child: new Container(
+                padding: const EdgeInsets.symmetric(horizontal: 3.0, ),
+                color: const Color(0xFFfcf9f4),
                 child: new ListView.builder(
                   itemCount: 7,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                         child: new Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             new ListTile(
-                              leading: new Icon(Icons.person, color: Colors.brown, size: 15.0,),
-                              title: new Text("Name Last Name", style: new TextStyle(fontSize: 15.0),),
+                              leading: new Icon(Icons.person, color: const Color(0xFF5a5859), size: 15.0,),
+                              title: new Text("Quentin LEGRAND", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontStyle: FontStyle.normal,),),
                               subtitle: new Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      new Icon(Icons.star, color: Colors.yellow,),
-                                      new Icon(Icons.star, color: Colors.yellow,),
-                                      new Icon(Icons.star, color: Colors.yellow,),
-                                      new Icon(Icons.star_border, color: Colors.yellow,),
-                                      new Icon(Icons.star_border, color: Colors.yellow,),
+                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
+                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
+                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
+                                      new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,),
+                                      new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,),
                                     ],
                                   ),
-                                  new Text("Datos: asaaasdfasfafadsfadfasaaasdfasfafadsfadfasaaasdfasfafadsfadfasaaasdfasfafadsfadf", style: new TextStyle(fontSize: 10.0),),
+                                  new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
-                                      new Icon(Icons.calendar_view_day, color: Colors.brown,),
-                                      new Text("Peso"),
-                                      new Icon(Icons.calendar_view_day, color: Colors.brown,),
-                                      new Text("Peso"),
-                                      new Icon(Icons.calendar_view_day, color: Colors.brown,),
-                                      new Text("Peso"),
+                                      new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                      new Text("6 Kg     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                      new Text("80 €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
+                                      new Text("January 2019", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                     ],
                                   ),
                                 ],
@@ -163,7 +182,7 @@ class Search extends StatelessWidget {
                         )
                     );
                   },
-                ),)
+                ),),)
           ],
         ),
       ),
