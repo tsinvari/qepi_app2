@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './create_parcel.dart';
 
 class VerticalDivider extends StatelessWidget {
   @override
@@ -27,7 +28,11 @@ class Parcels extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                 child: new Material(
                   child: new InkWell(
-                    onTap: () => print('create'),
+                    onLongPress: (){
+
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+
+                    },
                     child: new Container(
                       //width: 100.0,
                       height: 80.0,
