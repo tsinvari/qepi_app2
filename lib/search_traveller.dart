@@ -57,25 +57,23 @@ class Search extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new Text ("From", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
-                      new Text ("To", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",fontStyle: FontStyle.normal,),),
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                          hintText: "From",
+                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                      new TextFormField(
+                        decoration: new InputDecoration(
+                          hintText: "To",
+                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ],
                   ),
                   children: <Widget>[
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                        hintText: "From",
-                        hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                    new TextFormField(
-                      decoration: new InputDecoration(
-                        hintText: "To",
-                        hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
-                        border: InputBorder.none,
-                      ),
-                    ),
                     new Row(
                       children: <Widget>[
                         new Text("Month", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
@@ -88,8 +86,6 @@ class Search extends StatelessWidget {
                         new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: const Color(0xFFFAF4EA), inactiveColor: const Color(0xFFFAF4EA),)
                       ],
                     ),
-
-
                   ],
 
                 )
@@ -139,6 +135,7 @@ class Search extends StatelessWidget {
                 color: const Color(0xFFfcf9f4),
                 child: new ListView.builder(
                   itemCount: 7,
+                  itemExtent: 150.0,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                         child: new Column(
@@ -147,7 +144,7 @@ class Search extends StatelessWidget {
                             new ListTile(
                               leading: new Icon(Icons.person, color: const Color(0xFF5a5859), size: 15.0,),
                               title: new Text("Quentin LEGRAND", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontStyle: FontStyle.normal,),),
-                              subtitle: new Column(
+                                subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.max,
@@ -162,7 +159,10 @@ class Search extends StatelessWidget {
                                       new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,),
                                     ],
                                   ),
-                                  new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                  new Container(
+                                    padding: const EdgeInsets.only(top: 5.0, bottom: 7.0),
+                                    child: new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                  ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
