@@ -28,7 +28,7 @@ class Parcels extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                 child: new Material(
                   child: new InkWell(
-                    onLongPress: (){
+                    onTap: (){
 
                       Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
 

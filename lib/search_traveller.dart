@@ -36,7 +36,7 @@ class Search extends StatelessWidget {
             new Container(
               //width: 260.0,
               //height: 160.0,
-        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
               decoration: new BoxDecoration(
                 color: const Color(0xFFF09731),
                /* gradient: new LinearGradient(
@@ -54,36 +54,38 @@ class Search extends StatelessWidget {
                 child: new ExpansionTile(
                   initiallyExpanded: false,
                   title: new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new Text ("Origen"),
-                      new Text ("Destino"),
+                      new Text ("From", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
+                      new Text ("To", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",fontStyle: FontStyle.normal,),),
                     ],
                   ),
                   children: <Widget>[
                     new TextFormField(
                       decoration: new InputDecoration(
-                        hintText: "Origen",
-                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
+                        hintText: "From",
+                        hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
                         border: InputBorder.none,
                       ),
                     ),
                     new TextFormField(
                       decoration: new InputDecoration(
-                        hintText: "Destino",
-                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
+                        hintText: "To",
+                        hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
                         border: InputBorder.none,
                       ),
                     ),
                     new Row(
                       children: <Widget>[
-                        new Text("Fecha"),
-                        new IconButton(icon: new Icon(Icons.calendar_view_day,), onPressed: (){_selectDate(context);}),
+                        new Text("Month", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
+                        new IconButton(icon: new Icon(Icons.arrow_drop_down, color: const Color(0xFFFAF4EA),), onPressed: (){_selectDate(context);}),
                       ],
                     ),
                     new Row(
                       children: <Widget>[
-                        new Text("Peso"),
-                        new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null)
+                        new Text("Weigth", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
+                        new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: const Color(0xFFFAF4EA), inactiveColor: const Color(0xFFFAF4EA),)
                       ],
                     ),
 
