@@ -13,6 +13,18 @@ class VerticalDivider extends StatelessWidget {
   }
 }
 
+class petitVerticalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 20.0,
+      width: 0.6,
+      color: const Color(0xFFF09731),
+      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+    );
+  }
+}
+
 class Parcels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,9 +41,7 @@ class Parcels extends StatelessWidget {
                 child: new Material(
                   child: new InkWell(
                     onTap: (){
-
                       Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
-
                     },
                     child: new Container(
                       //width: 100.0,
@@ -65,7 +75,7 @@ class Parcels extends StatelessWidget {
                 //color: const Color(0xFFF09731),
               ),
             ),
-
+              //search
               new Container(
                /* height: 50.0,
                 width: 400.0,*/
@@ -96,7 +106,7 @@ class Parcels extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 3.0),
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
-                  itemExtent: 100.0,
+                  itemExtent: 110.0,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
@@ -111,25 +121,31 @@ class Parcels extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
+                                new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                                 new Text("___" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
                                 new Text("___",style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,),),
+                                new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                               ],
                             ),
-                            new Row(
+                          new Container(
+                            padding: const EdgeInsets.only(bottom: 7.0),
+                            child:
+                              new Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("5 Kg     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
+                                new Text("5 Kg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new petitVerticalDivider(),
                                 new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("7     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
+                                new Text("7",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new petitVerticalDivider(),
                                 new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("3/Nov/18     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 14.0,),),
+                                new Text("3/Nov/18",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                               ],
                             ),
+                          ),
                           ],
                         ),
                         trailing: new Row(

@@ -13,6 +13,30 @@ class VerticalDivider extends StatelessWidget {
   }
 }
 
+class petitVerticalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 20.0,
+      width: 0.6,
+      color: const Color(0xFFF09731),
+      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+    );
+  }
+}
+
+class HorizontalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 1.0,
+      width: 280.0,
+      color: Colors.white,
+      margin: const EdgeInsets.only(top: 0.5, bottom: 0.5),
+    );
+  }
+}
+
 class Search extends StatelessWidget {
 
   DateTime _date = new DateTime.now();
@@ -35,19 +59,10 @@ class Search extends StatelessWidget {
           children: <Widget>[
             new Container(
               //width: 260.0,
-              //height: 160.0,
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              //height: 260.0,
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               decoration: new BoxDecoration(
                 color: const Color(0xFFF09731),
-               /* gradient: new LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  //stops: [0.1, 0.5, 0.7, 0.9],
-                  colors: [
-                    const Color(0xFFffd85f),
-                    const Color(0xFFf0a043),
-                  ],
-                ),*/
                 border: new Border.all(color: Colors.white, width: 2.0),
                 borderRadius: new BorderRadius.circular(10.0),
               ),
@@ -60,31 +75,85 @@ class Search extends StatelessWidget {
                       new TextFormField(
                         decoration: new InputDecoration(
                           hintText: "From",
-                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
+                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA) ,fontFamily: "Gibson"),
                           border: InputBorder.none,
                         ),
+                        style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
                       ),
+                      new HorizontalDivider(),
                       new TextFormField(
                         decoration: new InputDecoration(
                           hintText: "To",
                           hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
                           border: InputBorder.none,
                         ),
+                        style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
                       ),
                     ],
                   ),
                   children: <Widget>[
-                    new Row(
-                      children: <Widget>[
-                        new Text("Month", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
-                        new IconButton(icon: new Icon(Icons.arrow_drop_down, color: const Color(0xFFFAF4EA),), onPressed: (){_selectDate(context);}),
-                      ],
+                    new Container(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child:
+                          new Row(
+                            children: <Widget>[
+                              new Text("Month", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
+                              new IconButton(icon: new Icon(Icons.arrow_drop_down, color: Colors.white,), onPressed: (){_selectDate(context);}),
+                            ],
+                          ),
                     ),
-                    new Row(
-                      children: <Widget>[
-                        new Text("Weigth", style: new TextStyle(color: const Color(0xFFFAF4EA), fontSize: 15.0,fontFamily: "Gibson",),),
-                        new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: const Color(0xFFFAF4EA), inactiveColor: const Color(0xFFFAF4EA),)
-                      ],
+                    new Container(
+                      padding: const EdgeInsets.only(left: 18.0),
+                      child:
+                          new Row(
+                            children: <Widget>[
+                              new Text("Weigth", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
+                              new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
+                            ],
+                          ),
+                    ),
+                    new Container(
+                      padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
+                      child:
+                      new Center(
+                        child: new Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
+                          child: new Material(
+                            child: new InkWell(
+                              onTap: (){
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                              },
+                              child: new Container(
+                                //width: 100.0,
+                                height: 40.0,
+                                decoration: new BoxDecoration(
+                                  //color: const Color(0xFFffd85f),
+                                  gradient: new LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      const Color(0xFFffd85f),
+                                      const Color(0xFFffd85f),
+                                    ],
+                                  ),
+                                  border: new Border.all(color: const Color(0xFFF09731), width: 2.0),
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                ),
+                                child: new Center(
+                                  child: new Text('SEARCH',
+                                    style: new TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Gibson",
+                                        color: Colors.white),),
+                                ),
+                              ),
+                            ),
+                            color: Colors.transparent,
+                          ),
+                          //color: const Color(0xFFF09731),
+                        ),
+                      ),
                     ),
                   ],
 
@@ -142,8 +211,14 @@ class Search extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             new ListTile(
-                              leading: new Icon(Icons.person, color: const Color(0xFF5a5859), size: 15.0,),
-                              title: new Text("Quentin LEGRAND", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontStyle: FontStyle.normal,),),
+                              leading:
+                             // new Row(
+                               // children: <Widget>[
+                                  new Icon(Icons.person, color: const Color(0xFF5a5859), size: 18.0,),
+                                //  new VerticalDivider(),
+                               // ],
+                             // ),
+                                title: new Text("Quentin LEGRAND", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -160,16 +235,19 @@ class Search extends StatelessWidget {
                                     ],
                                   ),
                                   new Container(
-                                    padding: const EdgeInsets.only(top: 5.0, bottom: 7.0),
-                                    child: new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                    padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
+                                    child: new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.",
+                                      style: new TextStyle(fontSize: 13.0,color: const Color(0xFF5A5958),),),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                                       new Text("6 Kg     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new petitVerticalDivider(),
                                       new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                                       new Text("80 €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new petitVerticalDivider(),
                                       new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                                       new Text("January 2019", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                     ],
