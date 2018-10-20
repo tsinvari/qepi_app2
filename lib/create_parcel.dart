@@ -14,8 +14,6 @@ class HorizontalDivider extends StatelessWidget {
   }
 }
 var value = "Month";
-var from ="From";
-var to="To";
 var x = "";
 class CreateParcel extends StatefulWidget{
   Create_Parcel createState()=> Create_Parcel();
@@ -93,7 +91,7 @@ class Create_Parcel extends State<CreateParcel>{
                                   new Flexible(
                                       child:new TextFormField(
                                         decoration: new InputDecoration(
-                                          hintText: from,
+                                          hintText: "From",
                                           hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
                                           border: InputBorder.none,
                                         ),
@@ -110,7 +108,7 @@ class Create_Parcel extends State<CreateParcel>{
                                   new Flexible(
                                     child:new TextFormField(
                                       decoration: new InputDecoration(
-                                        hintText: to,
+                                        hintText: "To",
                                         hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
                                         border: InputBorder.none,
                                       ),
