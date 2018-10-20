@@ -115,58 +115,62 @@ class ItemDetails extends StatelessWidget{
                   },
                   ),
                   );}
-                  else
-                    {
+                  else {
                   return new Card(
-                    child: new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        new Container(
-                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 20.0, bottom: 10.0),
-                          child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              new Text("Chocolates", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 17.0, fontWeight: FontWeight.normal,),),
-                              new Text("25.00 €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.normal,),),
-                            ],
+                    child: new Container(
+                      decoration: new BoxDecoration(
+                          border: new Border.all(color: const Color(0xFFFBDDBB))
+                      ),
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          new Container(
+                            padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 10.0, bottom: 10.0),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Text("Chocolates", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
+                                new Text("25.00 €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 14.0, fontWeight: FontWeight.normal,),),
+                              ],
+                            ),
                           ),
-                        ),
-                        new HorizontalDivider(),
-                        new Container(
-                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
-                          child:
-                          new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              new Icon(Icons.school, color: const Color(0xFFF09731),size: 50.0,),
-                              new Column(
-                                children: <Widget>[
-                                  new Text("2 pacs", style: TextStyle(color: const Color(0xFF5A5859),),),
-                                  new petitHorizontalDivider(),
-                                  new Text("300 gr", style: TextStyle(color: const Color(0xFF5A5859),),),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        new Container(
-                          padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 10.0, bottom: 10.0),
-                          child:
-                          new Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new Text("El Ceibo salty chocolates typical from Bolivia. El Ceibo salty chocolates typical from Bolivia.",
-                                  style: TextStyle(color: const Color(0xFF5A5859),),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: true,
+                          new HorizontalDivider(),
+                          new Container(
+                            padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
+                            child:
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Icon(Icons.school, color: const Color(0xFFF09731),size: 50.0,),
+                                new Column(
+                                  children: <Widget>[
+                                    new Text("2 pacs", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                    new petitHorizontalDivider(),
+                                    new Text("300 gr", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                  ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          new Container(
+                            padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 10.0, bottom: 10.0),
+                            child:
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                new Flexible(
+                                  child: new Text("El Ceibo salty chocolates typical from Bolivia. El Ceibo salty chocolates typical from Bolivia.",
+                                    style: TextStyle(color: const Color(0xFF5A5859),),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );}
                 }),

@@ -202,13 +202,15 @@ class CreateParcel extends StatelessWidget{
                   ],
                 ),),
             ),
-            new Center(
-              child: new Text ("COST TO SEND 36.00 €", style: new TextStyle(fontSize: 17.0, fontFamily: "Gibson", color: const Color(0xFF5a5859), fontWeight: FontWeight.bold,),),
+            new Container(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: new Center(
+                child: new Text ("COST TO SEND 36.00 €", style: new TextStyle(fontSize: 17.0, fontFamily: "Gibson", color: const Color(0xFF5a5859), fontWeight: FontWeight.bold,),),
+              ),
             ),
             new Container(
-              padding: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-              child:
-              new Center(
+              padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
+              child: new Center(
                 child: new Container(
                   padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                   child: new Material(
