@@ -26,6 +26,11 @@ class petitVerticalDivider extends StatelessWidget {
 }
 
 class Parcels extends StatelessWidget {
+  var paquetes = [['La Paz', 'Strasbourg', '7','5 Kg', '2/2/2018'],
+                  ['Cocha', 'Paris', '17','15 Kg', '2/2/2017'],
+                  ['Berlin', 'Bogota','3','5','23/Mar/2019']];
+
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -107,7 +112,7 @@ class Parcels extends StatelessWidget {
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
                   itemExtent: 110.0,
-                  itemCount: 5,
+                  itemCount: paquetes.length,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                       child: new ListTile(
@@ -121,11 +126,11 @@ class Parcels extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               mainAxisSize: MainAxisSize.max,
                               children: <Widget>[
-                                new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
+                                new Text(paquetes[index][0],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                                 new Text("___" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                 new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
                                 new Text("___",style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
+                                new Text(paquetes[index][1],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                               ],
                             ),
                           new Container(
@@ -136,13 +141,13 @@ class Parcels extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("5 Kg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new Text(paquetes[index][2],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                                 new petitVerticalDivider(),
                                 new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("7",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new Text(paquetes[index][3],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                                 new petitVerticalDivider(),
                                 new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text("3/Nov/18",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new Text(paquetes[index][4],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                               ],
                             ),
                           ),

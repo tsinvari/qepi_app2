@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './my_parcels.dart';
 
 class VerticalDivider extends StatelessWidget {
   @override
@@ -25,6 +26,10 @@ class petitVerticalDivider extends StatelessWidget {
 }
 
 class Trips extends StatelessWidget {
+  var viajes = [['La Paz', 'Strasbourg', '7','5', '2/Feb/2018'],
+                ['Cocha', 'Paris', '17','15', '2/Feb/2017'],
+                ['Berlin', 'Bogota','3','5','23/Mar/2019']];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +71,7 @@ class Trips extends StatelessWidget {
                 color: const Color(0xFFfcf9f4),
                 child : new ListView.builder(
                   itemExtent: 110.0,
-                  itemCount: 5,
+                  itemCount: viajes.length,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                       child: new ListTile(
@@ -80,11 +85,11 @@ class Trips extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
+                                  new Text(viajes[index][0]+" ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                                   new Text("____" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                   new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
                                   new Text("____",style: new TextStyle(color: const Color(0xFF5A5958),),),
-                                  new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
+                                  new Text(" "+viajes[index][1],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                                 ],
                               ),
                               new Container(
@@ -95,10 +100,10 @@ class Trips extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                    new Text("5 Kg     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                    new Text(viajes[index][2]+"Kg     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                                     new petitVerticalDivider(),
                                     new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                    new Text("7     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                    new Text(viajes[index][4]+"     ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                                   ],
                                 ),
                               ),

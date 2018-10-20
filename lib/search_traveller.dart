@@ -49,6 +49,10 @@ class Search extends StatelessWidget {
         lastDate: new DateTime(2019));
 
   }
+
+  var travelers = [  ['Quentin LEGRAND', '1','asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa', '7','5 Kg', '2/2/2018'],
+                  ['Ne Michel', '4', 'asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa','Paris', '17','15 Kg', '2/2/2017'],
+                  ['Jenny Murillo', '2', 'asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa','Paris', '17','15 Kg', '2/2/2017']];
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -203,7 +207,7 @@ class Search extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 3.0, ),
                 color: const Color(0xFFfcf9f4),
                 child: new ListView.builder(
-                  itemCount: 7,
+                  itemCount: travelers.length,
                   itemExtent: 150.0,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
@@ -218,7 +222,7 @@ class Search extends StatelessWidget {
                                 //  new VerticalDivider(),
                                // ],
                              // ),
-                                title: new Text("Quentin LEGRAND", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
+                                title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -226,30 +230,34 @@ class Search extends StatelessWidget {
                                 children: <Widget>[
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
-                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
-                                      new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,),
-                                      new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,),
-                                      new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,),
-                                    ],
+                                    children: List.generate(5, (i){
+                                      if (i < int.tryParse(travelers[index][1]))
+                                        {
+                                         return new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,);
+                                        }
+                                        else
+                                          {
+                                         return new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,);
+                                          }
+                                      })
+
                                   ),
                                   new Container(
                                     padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-                                    child: new Text("Super experienced mentor  and some useful content posts that have really helped me develop my skills.",
+                                    child: new Text(travelers[index][2],
                                       style: new TextStyle(fontSize: 13.0,color: const Color(0xFF5A5958),),),
                                   ),
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text("6 Kg     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][3]+" Kg     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                       new petitVerticalDivider(),
                                       new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text("80 €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][4]+" €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                       new petitVerticalDivider(),
                                       new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text("January 2019", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][5], style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                     ],
                                   ),
                                 ],
