@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './item_details.dart';
 import 'dart:async';
 
 class CreateParcel extends StatelessWidget{
@@ -81,6 +82,12 @@ class CreateParcel extends StatelessWidget{
                     new Text("Items", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                     new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                     new Text("80 €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                    new IconButton(icon: new Icon(Icons.arrow_right),
+                      onPressed: (){
+
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetails()));
+
+                      },),
                   ],
                 ),
               ],
@@ -88,25 +95,24 @@ class CreateParcel extends StatelessWidget{
           ),
           new Card(
             child: new Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                new Text ("Item details"),
-                new Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child:
-                  new Flex(
-                    direction: Axis.vertical,
-                    children: <Widget>[
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          hintText: "Description",
-                        ),
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    new Text ("Item details"),
+                    new Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child:
+                      new Flex(
+                        direction: Axis.vertical,
+                        children: <Widget>[
+                          new TextFormField(
+                            decoration: new InputDecoration(
+                              hintText: "Description",
+                            ),
+                          ),
+                        ],
                       ),
-                      ],
-                  ),
-                ),
-
-              ],
+                    ),
+                  ],
             ),
           ),
           new Card(
