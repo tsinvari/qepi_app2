@@ -2,6 +2,30 @@ import 'package:flutter/material.dart';
 import './Item_box.dart';
 import 'dart:async';
 
+class HorizontalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 1.0,
+      width: 130.0,
+      color: const Color(0xFFE6E6E6),
+      margin: const EdgeInsets.only(left: 0.0, top: 0.1, bottom: 0.1),
+    );
+  }
+}
+
+class petitHorizontalDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 1.0,
+      width: 50.0,
+      color: const Color(0xFFE6E6E6),
+      margin: const EdgeInsets.only(left: 0.0, top: 4.0, bottom: 4.0),
+    );
+  }
+}
+
 class ItemDetails extends StatelessWidget{
 
   DateTime _date = new DateTime.now();
@@ -54,19 +78,19 @@ class ItemDetails extends StatelessWidget{
                         new Column(
                           children: <Widget>[
                             new Text("4Kg", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
-                            new IconButton(icon: new Icon(const IconData(0xe800, fontFamily: "QepiIcons"),), onPressed: null,),
+                            new IconButton(icon: new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
                             new Text("7 Items", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
-                            new IconButton(icon: new Icon(const IconData(0xe803, fontFamily: "QepiIcons"),), onPressed: null,),
+                            new IconButton(icon: new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
                             new Text("103.00 €", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
-                            new IconButton(icon: new Icon(const IconData(0xe806, fontFamily: "QepiIcons"),), onPressed: null,),
+                            new IconButton(icon: new Icon(const IconData(0xe806, fontFamily: "QepiIcons"),color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
                       ],
@@ -85,7 +109,7 @@ class ItemDetails extends StatelessWidget{
                   if (index == 0)
                   {return new Card(
                     child: FlatButton(
-                      child: const Text('+'),
+                      child: const Icon(Icons.add,color: const Color(0xFFF09731),size: 50.0,),
                   onPressed: () {
                        Navigator.push(context, MaterialPageRoute(builder: (context) => ItemBox()));
                   },
@@ -102,34 +126,43 @@ class ItemDetails extends StatelessWidget{
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              new Text("Item"),
-                              new Text("Precio"),
+                              new Text("Chocolates", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 17.0, fontWeight: FontWeight.normal,),),
+                              new Text("25.00 €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.normal,),),
                             ],
                           ),
                         ),
+                        new HorizontalDivider(),
                         new Container(
                           padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
                           child:
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              new Icon(Icons.school),
+                              new Icon(Icons.school, color: const Color(0xFFF09731),size: 50.0,),
                               new Column(
                                 children: <Widget>[
-                                  new Text("Item"),
-                                  new Text("Precio"),
+                                  new Text("2 pacs", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                  new petitHorizontalDivider(),
+                                  new Text("300 gr", style: TextStyle(color: const Color(0xFF5A5859),),),
                                 ],
                               ),
                             ],
                           ),
                         ),
                         new Container(
-                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
+                          padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 10.0, bottom: 10.0),
                           child:
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              new Text("datos del item")
+                              new Flexible(
+                                child: new Text("El Ceibo salty chocolates typical from Bolivia. El Ceibo salty chocolates typical from Bolivia.",
+                                  style: TextStyle(color: const Color(0xFF5A5859),),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  softWrap: true,
+                                ),
+                              ),
                             ],
                           ),
                         ),
