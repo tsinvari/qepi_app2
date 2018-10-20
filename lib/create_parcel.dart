@@ -13,11 +13,17 @@ class HorizontalDivider extends StatelessWidget {
     );
   }
 }
-String value;
-List _cities =
-["Cluj-Napoca", "Bucuresti", "Timisoara", "Brasov", "Constanta"];
+var value = "Month";
+var from ="From";
+var to="To";
+var x = "";
+class CreateParcel extends StatefulWidget{
+  Create_Parcel createState()=> Create_Parcel();
+}
 
-class CreateParcel extends StatelessWidget{
+
+
+class Create_Parcel extends State<CreateParcel>{
   DateTime _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
 
@@ -27,6 +33,18 @@ class CreateParcel extends StatelessWidget{
         firstDate: new DateTime(2017),
         lastDate: new DateTime(2019));
   }
+
+  final fromController = TextEditingController();
+  final toController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    fromController.dispose();
+    toController.dispose();
+    super.dispose();
+  }
+
   List<DropdownMenuItem<String>> listDrop =[];
   void loadData(){
     listDrop.add(new DropdownMenuItem(child: new Text("1"), value: "1"));
@@ -70,27 +88,43 @@ class CreateParcel extends StatelessWidget{
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              new TextFormField(
-                                decoration: new InputDecoration(
-                                  hintText: "From",
-                                  hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
-                                  border: InputBorder.none,
-                                ),
-                                style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.bold,),
+                              new Row(
+                                children: <Widget>[
+                                  new Flexible(
+                                      child:new TextFormField(
+                                        decoration: new InputDecoration(
+                                          hintText: from,
+                                          hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                                          border: InputBorder.none,
+                                        ),
+                                        controller: fromController,
+                                        style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.bold,),
+                                      ),
+                                  ),
+                                  new IconButton(icon: new Icon(Icons.close, color: const Color(0xFFB9B9B9)), onPressed: (){setState((){fromController.text = "";});})
+                                ],
                               ),
                               new HorizontalDivider(),
-                              new TextFormField(
-                                decoration: new InputDecoration(
-                                  hintText: "To",
-                                  hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
-                                  border: InputBorder.none,
-                                ),
-                                style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.bold,),
+                              new Row(
+                                children: <Widget>[
+                                  new Flexible(
+                                    child:new TextFormField(
+                                      decoration: new InputDecoration(
+                                        hintText: to,
+                                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                                        border: InputBorder.none,
+                                      ),
+                                      controller: toController,
+                                      style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.bold,),
+                                    ),
+                                  ),
+                                  new IconButton(icon: new Icon(Icons.close, color: const Color(0xFFB9B9B9)), onPressed: (){setState((){toController.text = "";});})
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        new IconButton(icon: new Icon(Icons.swap_vertical_circle, color: const Color(0xFFF09731),), onPressed: (){_selectDate(context);}),
+                        new IconButton(icon: new Icon(Icons.swap_vertical_circle, color: const Color(0xFFF09731),), onPressed: (){ setState(() { x = fromController.text; fromController.text = toController.text ; toController.text = x;});}),
                       ],
                     ),
                     new Row(
@@ -100,6 +134,7 @@ class CreateParcel extends StatelessWidget{
                         new Column(
                           children: <Widget>[
                             new DropdownButton<String>(
+                              hint: new Text(value),
                               items: <String>['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August','September','October', 'November','December'].map((String value) {
                                 return new DropdownMenuItem<String>(
                                   value: value,
@@ -203,7 +238,7 @@ class CreateParcel extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    new Text ("Reciber", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
+                    new Text ("Recipient", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
                     new Container(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child:

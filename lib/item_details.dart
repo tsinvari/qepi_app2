@@ -153,7 +153,7 @@ class ItemDetails extends StatelessWidget{
                             ),
                           ),
                           new Container(
-                            padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 10.0, bottom: 10.0),
+                            padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 5.0, bottom: 10.0),
                             child:
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.start,
