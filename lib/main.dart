@@ -3,8 +3,6 @@ import './my_parcels.dart' as parcelsview;
 import './my_trips.dart' as tripsview;
 import './search_traveller.dart' as searchview;
 
-
-
 void main(){
   runApp(new MaterialApp(
     theme: ThemeData(fontFamily: 'Gibson'),
@@ -19,7 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
-
   TabController controller;
 
   @override
@@ -37,20 +34,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context){
     var drawer = new Drawer();
-
     return new Scaffold(
       drawer: drawer,
       appBar: new AppBar(
       //backgroundColor: const Color(0xFFf0a043),
       backgroundColor: Colors.white,
       title: new Text("Q'epi",
-        style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731)),),
+          style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731)),),
       iconTheme: new IconThemeData(color: const Color(0xFFF09731)),
       bottom: new TabBar(
         controller: controller,
         labelColor: const Color(0xFFF09731),
         unselectedLabelColor: const Color(0xFF9A9A9A),
-        labelStyle: TextStyle(fontWeight: FontWeight.bold,fontFamily: "Gibson",fontSize: 14.0),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Gibson", fontSize: 14.0),
         indicatorColor: const Color(0xFFF09731),
         tabs: <Widget>[
           new Tab(text: "My Parcels",),
@@ -59,7 +55,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
         ],
       ),
     ),
-
       body: new TabBarView(
       controller: controller,
         children: <Widget>[
@@ -68,7 +63,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
           new tripsview.Trips(),
         ],
       ),
-
     );
 }
 

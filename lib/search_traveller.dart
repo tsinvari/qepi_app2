@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import './detail_traveler.dart';
 import 'dart:async';
+
 
 class VerticalDivider extends StatelessWidget {
   @override
@@ -13,14 +15,14 @@ class VerticalDivider extends StatelessWidget {
   }
 }
 
-class petitVerticalDivider extends StatelessWidget {
+class PetitVerticalDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
       height: 20.0,
       width: 0.6,
       color: const Color(0xFFF09731),
-      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+      margin: const EdgeInsets.only(left: 25.0, right: 25.0),
     );
   }
 }
@@ -50,9 +52,9 @@ class Search extends StatelessWidget {
 
   }
 
-  var travelers = [  ['Quentin LEGRAND', '1','asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa', '7','5 Kg', '2/2/2018'],
-                  ['Ne Michel', '4', 'asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa','Paris', '17','15 Kg', '2/2/2017'],
-                  ['Jenny Murillo', '2', 'asdfasfadfadsfasdfasdfasdfasfafadfadfasdfasfasfasfafsa','Paris', '17','15 Kg', '2/2/2017']];
+  var travelers = [  ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018'],
+                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017'],
+                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017']];
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -162,44 +164,6 @@ class Search extends StatelessWidget {
                   ],
 
                 )
-                /*new Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    new Flexible(
-                      child: new Container(
-                        width: 160.0,
-                        height: 160.0,
-                        padding: const EdgeInsets.all(3.0),
-                        child:
-                        new Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new TextFormField(
-                              decoration: new InputDecoration(
-                                labelText: "Origen",
-                                labelStyle: new TextStyle(fontSize: 10.0),
-                                border: InputBorder.none,
-                              ),
-                              style: new TextStyle(fontSize: 13.0),
-                            ),
-                            new TextFormField(
-                              decoration: new InputDecoration(
-                                labelText: "Destino",
-                                labelStyle: new TextStyle(fontSize: 10.0),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                            new Icon(Icons.arrow_drop_down),
-                          ],
-                        ),
-                      )
-
-                    ),
-                    new Icon(Icons.swap_vert,)
-                  ],
-                ),*/
             ),
 
             new Expanded(
@@ -211,17 +175,16 @@ class Search extends StatelessWidget {
                   itemExtent: 150.0,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
+                        child: new InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailTraveler()));
+                        },
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             new ListTile(
                               leading:
-                             // new Row(
-                               // children: <Widget>[
                                   new Icon(Icons.person, color: const Color(0xFF5a5859), size: 18.0,),
-                                //  new VerticalDivider(),
-                               // ],
-                             // ),
                                 title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -251,11 +214,11 @@ class Search extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][3]+" Kg     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
-                                      new petitVerticalDivider(),
+                                      new Text(travelers[index][3]+" Kg", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][4]+" €     ", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
-                                      new petitVerticalDivider(),
+                                      new Text(travelers[index][4]+" €", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                                       new Text(travelers[index][5], style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
                                     ],
@@ -267,7 +230,8 @@ class Search extends StatelessWidget {
 
                             ),
                           ],
-                        )
+                        ),
+                        ),
                     );
                   },
                 ),),)
