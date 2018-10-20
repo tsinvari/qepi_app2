@@ -9,11 +9,17 @@ class ItemBox extends StatelessWidget{
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-        //backgroundColor: const Color(0xFFf0a043),
-        backgroundColor: Colors.white,
-        title: new Text("Q'epi", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731)),),
-        iconTheme: new IconThemeData(color: const Color(0xFFF09731)),
+          backgroundColor: const Color(0xFFF09731),
+          title: new Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              new Icon(const IconData(0xe805, fontFamily: "QepiIcons"), color: Colors.white, size: 30.0,),
+              new Text("  CREATE PARCEL", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),)
+            ],
+          ),
+          iconTheme: new IconThemeData(color: Colors.white),
         ),
+        backgroundColor: const Color(0xFFfcf9f4),
       body: new Column(
         children: <Widget>[
           new Container(

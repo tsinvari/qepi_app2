@@ -24,12 +24,18 @@ class ItemDetails extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          //backgroundColor: const Color(0xFFf0a043),
-          backgroundColor: Colors.white,
-          title: new Text("Q'epi", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731)),),
-          iconTheme: new IconThemeData(color: const Color(0xFFF09731)),
+      appBar: new AppBar(
+        backgroundColor: const Color(0xFFF09731),
+        title: new Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            new Icon(const IconData(0xe805, fontFamily: "QepiIcons"), color: Colors.white, size: 30.0,),
+            new Text("  CREATE PARCEL", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18.0),)
+          ],
         ),
+        iconTheme: new IconThemeData(color: Colors.white),
+      ),
+      backgroundColor: const Color(0xFFfcf9f4),
         body: new Column(
           children: <Widget>[
             new Card(
@@ -40,27 +46,27 @@ class ItemDetails extends StatelessWidget{
                   children: <Widget>[
                     new Container(
                       padding: EdgeInsets.only(bottom: 25.0),
-                      child: new Text ("Item details",),
+                      child: new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
                     ),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         new Column(
                           children: <Widget>[
-                            new Text("Fecha"),
-                            new IconButton(icon: new Icon(Icons.calendar_view_day,), onPressed: null,),
+                            new Text("4Kg", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new IconButton(icon: new Icon(const IconData(0xe800, fontFamily: "QepiIcons"),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
-                            new Text("Fecha"),
-                            new IconButton(icon: new Icon(Icons.calendar_view_day,), onPressed: null,),
+                            new Text("7 Items", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new IconButton(icon: new Icon(const IconData(0xe803, fontFamily: "QepiIcons"),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
-                            new Text("Fecha"),
-                            new IconButton(icon: new Icon(Icons.calendar_view_day,), onPressed: null,),
+                            new Text("103.00 €", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new IconButton(icon: new Icon(const IconData(0xe806, fontFamily: "QepiIcons"),), onPressed: null,),
                           ],
                         ),
                       ],

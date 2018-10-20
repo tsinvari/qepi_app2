@@ -8,7 +8,7 @@ class VerticalDivider extends StatelessWidget {
       height: 50.0,
       width: 0.6,
       color: const Color(0xFFF09731),
-      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
     );
   }
 }
