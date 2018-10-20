@@ -7,7 +7,7 @@ class VerticalDivider extends StatelessWidget {
       height: 50.0,
       width: 0.6,
       color: const Color(0xFFF09731),
-      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
     );
   }
 }
@@ -19,7 +19,7 @@ class petitVerticalDivider extends StatelessWidget {
       height: 20.0,
       width: 0.6,
       color: const Color(0xFFF09731),
-      margin: const EdgeInsets.only(left: 10.0, right: 25.0),
+      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
     );
   }
 }
@@ -71,19 +71,19 @@ class Trips extends StatelessWidget {
                     return new Card(
                       child: new ListTile(
                           onTap: null,
-                          title: new Column(
+                          subtitle: new Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               new Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
                                   new Text("La Paz ",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
-                                  new Text("___" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                  new Text("____" ,style: new TextStyle(color: const Color(0xFF5A5958),),),
                                   new Icon(const IconData(0xe80a, fontFamily: "QepiIcons"),),
-                                  new Text("___",style: new TextStyle(color: const Color(0xFF5A5958),),),
+                                  new Text("____",style: new TextStyle(color: const Color(0xFF5A5958),),),
                                   new Text(" Strasbourg",style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 15.0,fontWeight: FontWeight.bold,),),
                                 ],
                               ),
@@ -106,6 +106,7 @@ class Trips extends StatelessWidget {
                           ),
                           trailing: new Row(
                             mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               new VerticalDivider(),
                               new Column(

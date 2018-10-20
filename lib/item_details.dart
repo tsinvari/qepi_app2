@@ -34,11 +34,16 @@ class ItemDetails extends StatelessWidget{
           children: <Widget>[
             new Card(
               child: new Container(
+                padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 25.0, bottom: 25.0),
                 child: new Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    new Text ("Item details",),
+                    new Container(
+                      padding: EdgeInsets.only(bottom: 25.0),
+                      child: new Text ("Item details",),
+                    ),
                     new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         new Column(
                           children: <Widget>[
@@ -84,29 +89,44 @@ class ItemDetails extends StatelessWidget{
                     {
                   return new Card(
                     child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        new Row(
-                          children: <Widget>[
-                            new Text("Item"),
-                            new Text("Precio"),
-                          ],
+                        new Container(
+                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 20.0, bottom: 10.0),
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              new Text("Item"),
+                              new Text("Precio"),
+                            ],
+                          ),
                         ),
-                        new Row(
-                          children: <Widget>[
-                            new Icon(Icons.school),
-                            new Column(
-                              children: <Widget>[
-                                new Text("Item"),
-                                new Text("Precio"),
-                              ],
-                            ),
-                          ],
+                        new Container(
+                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
+                          child:
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              new Icon(Icons.school),
+                              new Column(
+                                children: <Widget>[
+                                  new Text("Item"),
+                                  new Text("Precio"),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        new Row(
-                          children: <Widget>[
-                            new Text("datos del item")
-                          ],
-                        )
+                        new Container(
+                          padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
+                          child:
+                          new Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              new Text("datos del item")
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   );}
