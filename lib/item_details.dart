@@ -26,6 +26,21 @@ class petitHorizontalDivider extends StatelessWidget {
   }
 }
 
+calc(List itemsDe) {
+  var pesoTotal = 0.0;
+  var itemsTotal = 0;
+  var precioTotal = 0.0;
+  for (var i = 0; i < itemsDe.length; i++)
+  {
+    precioTotal = precioTotal+itemsDe[i][1];
+    itemsTotal = itemsTotal+itemsDe[i][2];
+    pesoTotal = pesoTotal+itemsDe[i][4];
+
+  }
+  var total = [(pesoTotal/1000),itemsTotal,precioTotal];
+  return total;
+}
+
 class ItemDetails extends StatelessWidget{
 
   DateTime _date = new DateTime.now();
@@ -37,13 +52,10 @@ class ItemDetails extends StatelessWidget{
         firstDate: new DateTime(2017),
         lastDate: new DateTime(2019));
   }
-  List<DropdownMenuItem<String>> listDrop =[];
-  void loadData(){
-    listDrop.add(new DropdownMenuItem(child: new Text("1"), value: "1"));
-    listDrop.add(new DropdownMenuItem(child: new Text("2"), value: "3"));
-    listDrop.add(new DropdownMenuItem(child: new Text("3"), value: "4"));
+  var itemsDe = [["Chocolates", 25.50, 2, "packs",300,'asdfqwerasdfqweras'],
+                  ["Chocolates 2", 45.40, 5, "pieces", 900,'asdfqwerasdfqweras'],
+                  ["Chocolates 3", 75.00, 6, "pair", 140,'asdfqwerasdfqweras']];
 
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,19 +89,19 @@ class ItemDetails extends StatelessWidget{
                       children: <Widget>[
                         new Column(
                           children: <Widget>[
-                            new Text("4Kg", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new Text(calc(itemsDe)[0].toString()+" Kg", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
                             new IconButton(icon: new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
-                            new Text("7 Items", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new Text(calc(itemsDe)[1].toString()+" Items", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
                             new IconButton(icon: new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
                         new Column(
                           children: <Widget>[
-                            new Text("103.00 €", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
+                            new Text(calc(itemsDe)[2].toString()+" €", style: TextStyle(fontWeight: FontWeight.normal, color: const Color(0xFF5A5859), fontSize: 16.0),),
                             new IconButton(icon: new Icon(const IconData(0xe806, fontFamily: "QepiIcons"),color: const Color(0xFF5A5859),), onPressed: null,),
                           ],
                         ),
@@ -105,7 +117,7 @@ class ItemDetails extends StatelessWidget{
                 primary: false,
                 padding: const EdgeInsets.all(10.0),
                 crossAxisSpacing: 10.0,
-                children: List.generate(18, (index){
+                children: List.generate(itemsDe.length+1, (index){
                   if (index == 0)
                   {return new Card(
                     child: FlatButton(
@@ -129,8 +141,8 @@ class ItemDetails extends StatelessWidget{
                             child: new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                new Text("Chocolates", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
-                                new Text("25.00 €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 14.0, fontWeight: FontWeight.normal,),),
+                                new Text(itemsDe[(index-1)][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
+                                new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 14.0, fontWeight: FontWeight.normal,),),
                               ],
                             ),
                           ),
@@ -144,9 +156,9 @@ class ItemDetails extends StatelessWidget{
                                 new Icon(Icons.school, color: const Color(0xFFF09731),size: 50.0,),
                                 new Column(
                                   children: <Widget>[
-                                    new Text("2 pacs", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                    new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
                                     new petitHorizontalDivider(),
-                                    new Text("300 gr", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                    new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),),),
                                   ],
                                 ),
                               ],
@@ -159,7 +171,7 @@ class ItemDetails extends StatelessWidget{
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 new Flexible(
-                                  child: new Text("El Ceibo salty chocolates typical from Bolivia. El Ceibo salty chocolates typical from Bolivia.",
+                                  child: new Text(itemsDe[(index-1)][5],
                                     style: TextStyle(color: const Color(0xFF5A5859),),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
