@@ -13,6 +13,9 @@ class HorizontalDivider extends StatelessWidget {
     );
   }
 }
+String value;
+List _cities =
+["Cluj-Napoca", "Bucuresti", "Timisoara", "Brasov", "Constanta"];
 
 class CreateParcel extends StatelessWidget{
   DateTime _date = new DateTime.now();
@@ -92,8 +95,26 @@ class CreateParcel extends StatelessWidget{
                     ),
                     new Row(
                       children: <Widget>[
-                        new Text("Fecha", style: new TextStyle(fontSize: 16.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
-                        new IconButton(icon: new Icon(Icons.arrow_drop_down, color: const Color(0xFF5A5859),), onPressed: (){_selectDate(context);}),
+                        //new Text("Fecha", style: new TextStyle(fontSize: 16.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
+                        //new IconButton(icon: new Icon(Icons.arrow_drop_down, color: const Color(0xFF5A5859),), onPressed: (){_selectDate(context);}),
+                        new Column(
+                          children: <Widget>[
+                            new DropdownButton<String>(
+                              items: <String>['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August','September','October', 'November','December'].map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String selectedMonth) {
+                                print("Selected city $selectedMonth, we are going to refresh the UI");
+                                setState(() {
+                                  value = selectedMonth;
+                                  });
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     new Row(
