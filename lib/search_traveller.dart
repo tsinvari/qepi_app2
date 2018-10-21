@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './detail_traveler.dart';
 import 'dart:async';
 
+double _discreteValue = 0.0;
 
 class VerticalDivider extends StatelessWidget {
   @override
@@ -39,7 +40,11 @@ class HorizontalDivider extends StatelessWidget {
   }
 }
 
-class Search extends StatelessWidget {
+class SearchTraveler extends StatefulWidget{
+  Search createState()=> Search();
+}
+
+class Search extends  State<SearchTraveler> {
 
   DateTime _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
@@ -114,7 +119,22 @@ class Search extends StatelessWidget {
                           new Row(
                             children: <Widget>[
                               new Text("Weigth", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
-                              new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
+                              //new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
+                              new Slider(
+                                value: _discreteValue,
+                                min: 0.0,
+                                max: 10.0,
+                                activeColor: Colors.red,
+                                inactiveColor: Colors.white,
+                                divisions: 50,
+                                label: new Text('${_discreteValue.round()}').toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    _discreteValue = value;
+                                  });
+                                },
+                              ),
+                              new Text(_discreteValue.round().toString(), style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
                             ],
                           ),
                     ),
@@ -194,12 +214,9 @@ class Search extends StatelessWidget {
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: List.generate(5, (i){
-                                      if (i < int.tryParse(travelers[index][1]))
-                                        {
+                                      if (i < int.tryParse(travelers[index][1])) {
                                          return new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,);
-                                        }
-                                        else
-                                          {
+                                        } else {
                                          return new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,);
                                           }
                                       })

@@ -59,7 +59,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       controller: controller,
         children: <Widget>[
           new parcelsview.Parcels(),
-          new searchview.Search(),
+          new searchview.SearchTraveler(),
           new tripsview.Trips(),
         ],
       ),
