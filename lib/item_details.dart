@@ -142,6 +142,7 @@ class Item_Details extends State<ItemDetails>{
                         setState(() {
                             itemsDe.add(result);});
                   },
+                      
                   ),
                   );}
                   else {
