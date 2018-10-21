@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class ItemBox extends StatelessWidget{
+
+class ItemBox extends StatefulWidget{
+  Item_Box createState()=> Item_Box();
+}
+
+class Item_Box extends State<ItemBox>{
+  var itemNuevo;
+  var itemList = ['Chocolates', 'Recuerdos', 'Chompas', 'Celulares'];
+  var colortipo = Colors.white;
+  var indextipo = 0;
+
+  final quantityController = TextEditingController();
+  final costController = TextEditingController();
+  final descripController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    quantityController.dispose();
+    costController.dispose();
+    descripController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -34,19 +57,49 @@ class ItemBox extends StatelessWidget{
             height: 80.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: List.generate(15, (index) {
-                return new Card(
-                  child: new Stack(alignment: const Alignment(0.0, 0.0),
-                    children: <Widget>[
-                      new Container(
-                        height: 60.0,
-                        width: 75.0,
-                        child: new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), size: 44.0, color: const Color(0xFFF6CA97),),
+              children: List.generate(itemList.length, (index) {
+                if (index == indextipo){
+                  return new Card(
+                    child: new Stack(alignment: const Alignment(0.0, 0.0),
+                      children: <Widget>[
+                        new Container(
+                            height: 60.0,
+                            width: 75.0,
+                            color: colortipo,
+                            child: new IconButton(icon: new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), size: 44.0, color: const Color(0xFFF6CA97),),
+                                onPressed: (){
+                                  setState(() {
+                                    indextipo = index;
+                                    colortipo = Colors.orangeAccent;
+                                  });
+                                })
+                        ),
+                        new Text(itemList[index], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  );
+                }else
+                  {
+                    return new Card(
+                      child: new Stack(alignment: const Alignment(0.0, 0.0),
+                        children: <Widget>[
+                          new Container(
+                              height: 60.0,
+                              width: 75.0,
+                              color: Colors.white,
+                              child: new IconButton(icon: new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), size: 44.0, color: const Color(0xFFF6CA97),),
+                                  onPressed: (){
+                                    setState(() {
+                                      indextipo = index;
+                                      colortipo = Colors.orangeAccent;
+                                    });
+                                  })
+                          ),
+                          new Text(itemList[index], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
+                        ],
                       ),
-                      new Text("Item", style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
-                    ],
-                  )
-                );
+                    );
+                  }
               }),
             ),
           ),
@@ -78,9 +131,16 @@ class ItemBox extends StatelessWidget{
                   new Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      new Text("1"),
-                      new Text("2"),
-                      new Text("4"),
+                      new Flexible(
+                        child: new TextFormField(
+                          decoration: new InputDecoration(
+                            hintText: "3",
+                            hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                            border: InputBorder.none,
+                          ),
+                          controller: quantityController,
+                        ),
+                      ),
                     ],
                   ),
                   new Row(
@@ -105,8 +165,17 @@ class ItemBox extends StatelessWidget{
                 children: <Widget>[
                   new Text("Cost", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
                   new Center(
-                    child: new Text('100.00 €', style: new TextStyle(fontSize: 16.0, fontFamily: "Gibson", color: const Color(0xFF5A5859), fontWeight: FontWeight.bold,),)
-                  )
+                    child: new Container(
+                      child: new TextFormField(
+                        decoration: new InputDecoration(
+                          hintText: "100.00",
+                          hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                          border: InputBorder.none,
+                        ),
+                        controller: costController,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -144,6 +213,7 @@ class ItemBox extends StatelessWidget{
                         hintText: "Some things that my friend loves from Bolivia...",
                         hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
                       ),
+                      controller: descripController,
                       style: new TextStyle(fontFamily: "Gibson", fontSize: 15.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.normal,),
                     ),
                   ],
@@ -162,7 +232,10 @@ class ItemBox extends StatelessWidget{
             child: new Material(
               child: new InkWell(
                 onTap: (){
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                  setState(() {
+                    itemNuevo = [itemList[indextipo], 75.00, int.tryParse(quantityController.text), "pair", int.tryParse(costController.text),descripController.text];
+                  });
+                  Navigator.pop(context, itemNuevo);
                 },
                 child: new Container(
                   width: 350.0,

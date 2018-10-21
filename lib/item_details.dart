@@ -41,7 +41,11 @@ calc(List itemsDe) {
   return total;
 }
 
-class ItemDetails extends StatelessWidget{
+class ItemDetails extends StatefulWidget{
+  Item_Details createState()=> Item_Details();
+}
+
+class Item_Details extends State<ItemDetails>{
 
   DateTime _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
@@ -52,9 +56,8 @@ class ItemDetails extends StatelessWidget{
         firstDate: new DateTime(2017),
         lastDate: new DateTime(2019));
   }
-  var itemsDe = [["Chocolates", 25.50, 2, "packs",300,'asdfqwerasdfqweras'],
-                  ["Chocolates 2", 45.40, 5, "pieces", 900,'asdfqwerasdfqweras'],
-                  ["Chocolates 3", 75.00, 6, "pair", 140,'asdfqwerasdfqweras']];
+  var itemsDe = [];
+  var enviar;
 
 
   @override
@@ -82,8 +85,19 @@ class ItemDetails extends StatelessWidget{
                   children: <Widget>[
                     new Container(
                       padding: EdgeInsets.only(bottom: 25.0),
-                      child: new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
-                    ),
+                      child: new Row(
+                        children: <Widget>[
+                          new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
+                          new IconButton(icon: new Icon(Icons.arrow_right),
+                              onPressed: (){
+                                setState(() {
+                                  enviar = [calc(itemsDe)[0].toString(), calc(itemsDe)[1].toString(), calc(itemsDe)[2].toString()];
+                                });
+                                Navigator.pop(context, enviar);
+                              })
+                        ],
+                      ),
+                     ),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -122,8 +136,11 @@ class ItemDetails extends StatelessWidget{
                   {return new Card(
                     child: FlatButton(
                       child: const Icon(Icons.add,color: const Color(0xFFF09731),size: 50.0,),
-                  onPressed: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => ItemBox()));
+                  onPressed: () async {
+                        final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemBox()));
+                        if (result != null)
+                        setState(() {
+                            itemsDe.add(result);});
                   },
                   ),
                   );}

@@ -15,6 +15,7 @@ class HorizontalDivider extends StatelessWidget {
 }
 var value = "Month";
 var x = "";
+var itemvalues = ['0','0','0'];
 class CreateParcel extends StatefulWidget{
   Create_Parcel createState()=> Create_Parcel();
 }
@@ -43,13 +44,6 @@ class Create_Parcel extends State<CreateParcel>{
     super.dispose();
   }
 
-  List<DropdownMenuItem<String>> listDrop =[];
-  void loadData(){
-    listDrop.add(new DropdownMenuItem(child: new Text("1"), value: "1"));
-    listDrop.add(new DropdownMenuItem(child: new Text("2"), value: "3"));
-    listDrop.add(new DropdownMenuItem(child: new Text("3"), value: "4"));
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,14 +167,19 @@ class Create_Parcel extends State<CreateParcel>{
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                        new Text("6 Kg     ", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
+                        new Text(itemvalues[0].toString()+" Kg     ", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
                         new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                        new Text("Items", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
+                        new Text(itemvalues[1].toString()+" Items", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
                         new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                        new Text("80 €     ", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
+                        new Text(itemvalues[2].toString()+" €     ", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
                         new IconButton(icon: new Icon(Icons.arrow_right, color: const Color(0xFFF09731),),
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetails()));
+                          onPressed: () async {
+                          final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetails()));
+                          if (result != null)
+                            setState(() {
+                              itemvalues.removeRange(0, 2);
+                              itemvalues = result;
+                            });
                           },),
                       ],
                     ),
