@@ -125,9 +125,9 @@ class Search extends  State<SearchTraveler> {
                                 min: 0.0,
                                 max: 10.0,
                                 activeColor: Colors.red,
-                                inactiveColor: Colors.white,
+                                inactiveColor: Colors.red,
                                 divisions: 50,
-                                label: new Text('${_discreteValue.round()}').toString(),
+                                label: '${_discreteValue.round()}',
                                 onChanged: (double value) {
                                   setState(() {
                                     _discreteValue = value;
