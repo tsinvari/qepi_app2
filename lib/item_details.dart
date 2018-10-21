@@ -64,6 +64,13 @@ class Item_Details extends State<ItemDetails>{
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        leading: new IconButton(icon: new Icon(Icons.arrow_back),
+            onPressed: (){
+              setState(() {
+                enviar = [calc(itemsDe)[0].toString(), calc(itemsDe)[1].toString(), calc(itemsDe)[2].toString()];
+              });
+              Navigator.pop(context, enviar);
+            }),
         backgroundColor: const Color(0xFFF09731),
         title: new Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -88,13 +95,6 @@ class Item_Details extends State<ItemDetails>{
                       child: new Row(
                         children: <Widget>[
                           new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
-                          new IconButton(icon: new Icon(Icons.arrow_right),
-                              onPressed: (){
-                                setState(() {
-                                  enviar = [calc(itemsDe)[0].toString(), calc(itemsDe)[1].toString(), calc(itemsDe)[2].toString()];
-                                });
-                                Navigator.pop(context, enviar);
-                              })
                         ],
                       ),
                      ),
@@ -142,7 +142,7 @@ class Item_Details extends State<ItemDetails>{
                         setState(() {
                             itemsDe.add(result);});
                   },
-                      
+
                   ),
                   );}
                   else {
