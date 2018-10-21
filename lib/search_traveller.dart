@@ -120,6 +120,7 @@ class Search extends  State<SearchTraveler> {
                             children: <Widget>[
                               new Text("Weigth", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
                               //new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
+
                               new Slider(
                                 value: _discreteValue,
                                 min: 0.0,
