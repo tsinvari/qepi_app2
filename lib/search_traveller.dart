@@ -40,6 +40,9 @@ class HorizontalDivider extends StatelessWidget {
   }
 }
 
+var x = "";
+var value = "Month";
+
 class SearchTraveler extends StatefulWidget{
   Search createState()=> Search();
 }
@@ -56,6 +59,9 @@ class Search extends  State<SearchTraveler> {
         lastDate: new DateTime(2019));
 
   }
+
+  final fromControllerSearch = TextEditingController();
+  final toControllerSearch = TextEditingController();
 
   var travelers = [  ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018'],
                   ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017'],
@@ -79,55 +85,105 @@ class Search extends  State<SearchTraveler> {
               ),
                 child: new ExpansionTile(
                   initiallyExpanded: false,
-                  title: new Column(
+                  title: new Row (
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          hintText: "From",
-                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA) ,fontFamily: "Gibson"),
-                          border: InputBorder.none,
+                      new Flexible(
+                        child: new Column (
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            new Row(
+                              children: <Widget>[
+                                new Flexible(
+                                  child:new TextFormField(
+                                    decoration: new InputDecoration(
+                                      hintText: "From",
+                                      hintStyle: new TextStyle(color: Colors.white,fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                                      border: InputBorder.none,
+                                    ),
+                                    controller: fromControllerSearch,
+                                    style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
+                                  ),
+                                ),
+                                new IconButton(icon: new Icon(Icons.close, color: Colors.white), onPressed: (){setState((){fromControllerSearch.text = "";});})
+                              ],
+                            ),
+                            new HorizontalDivider(),
+                            new Row(
+                              children: <Widget>[
+                                new Flexible(
+                                  child:new TextFormField(
+                                    decoration: new InputDecoration(
+                                      hintText: "To",
+                                      hintStyle: new TextStyle(color: Colors.white,fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                                      border: InputBorder.none,
+                                    ),
+                                    controller: toControllerSearch,
+                                    style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
+                                  ),
+                                ),
+                                new IconButton(icon: new Icon(Icons.close, color: Colors.white), onPressed: (){setState((){toControllerSearch.text = "";});})
+                              ],
+                            ),
+                          ],
                         ),
-                        style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
                       ),
-                      new HorizontalDivider(),
-                      new TextFormField(
-                        decoration: new InputDecoration(
-                          hintText: "To",
-                          hintStyle: new TextStyle(color: const Color(0xFFFAF4EA),fontFamily: "Gibson"),
-                          border: InputBorder.none,
-                        ),
-                        style: new TextStyle(fontFamily: "Gibson", fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold,),
-                      ),
+                      new IconButton(icon: new Icon(Icons.swap_vertical_circle, color: Colors.white,), onPressed: (){ setState(() { x = fromControllerSearch.text; fromControllerSearch.text = toControllerSearch.text ; toControllerSearch.text = x;});}),
                     ],
                   ),
                   children: <Widget>[
                     new Container(
-                      padding: const EdgeInsets.only(left: 18.0),
+                      padding: const EdgeInsets.only(left: 18.0, bottom: 10.0),
                       child:
                           new Row(
                             children: <Widget>[
-                              new Text("Month", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
-                              new IconButton(icon: new Icon(Icons.arrow_drop_down, color: Colors.white,), onPressed: (){_selectDate(context);}),
+                              //new Text("Month", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
+                              //new IconButton(icon: new Icon(Icons.arrow_drop_down, color: Colors.white,), onPressed: (){_selectDate(context);}),
+                              new Column(
+                                children: <Widget>[
+                                  new DropdownButton<String>(
+                                    hint: new Text(value, style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
+                                    items: <String>['January', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August','September','October', 'November','December'].map((String value) {
+                                      return new DropdownMenuItem<String>(
+                                        value: value,
+                                        child: new Text(value, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
+                                      );
+                                    }).toList(),
+                                    style: new TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.normal,
+                                        fontFamily: "Gibson",
+                                        color: Colors.white,),
+                                    iconSize: 30.0,
+                                    onChanged: (String selectedMonth) {
+                                      //print("Selected city $selectedMonth, we are going to refresh the UI");
+                                      setState(() {
+                                        value = selectedMonth;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                     ),
                     new Container(
-                      padding: const EdgeInsets.only(left: 18.0),
-                      child:
-                          new Row(
+                      //width: 550.0,
+                      padding: const EdgeInsets.only(left: 18.0, bottom: 10.0),
+                      child: new Row(
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               new Text("Weigth", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
                               //new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
-
                               new Slider(
                                 value: _discreteValue,
                                 min: 0.0,
                                 max: 10.0,
-                                activeColor: Colors.red,
-                                inactiveColor: Colors.red,
-                                divisions: 50,
+                                activeColor: const Color(0xFFffd85f),
+                                inactiveColor: const Color(0xFFffd85f),
+                                divisions: 100,
                                 label: '${_discreteValue.round()}',
                                 onChanged: (double value) {
                                   setState(() {
@@ -135,7 +191,7 @@ class Search extends  State<SearchTraveler> {
                                   });
                                 },
                               ),
-                              new Text(_discreteValue.round().toString(), style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
+                              new Text(_discreteValue.round().toString(), style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),textAlign: TextAlign.right,),
                             ],
                           ),
                     ),
