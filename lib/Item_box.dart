@@ -84,7 +84,7 @@ class Item_Box extends State<ItemBox>{
                                         height: 60.0,
                                         width: 75.0,
                                         color: colortipo,
-                                        child: new IconButton(icon: new Icon(const IconData(0xe80d, fontFamily: "QepiIconsItemTypes"), size: 44.0, color: colorFont,),
+                                        child: new IconButton(icon: new Icon(IconData(int.tryParse(itemList[index][1]), fontFamily: "QepiIconsItemTypes"), size: 44.0, color: colorFont,),
                                             onPressed: (){
                                               setState(() {
                                                 indextipo = index;
@@ -115,7 +115,7 @@ class Item_Box extends State<ItemBox>{
                                         height: 60.0,
                                         width: 75.0,
                                         color: Colors.white,
-                                        child: new Icon(const IconData(0xe80d, fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF6CA97), size: 44.0,),
+                                        child: new Icon( IconData(int.tryParse(itemList[index][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF6CA97), size: 44.0,),
                                       ),
                                     new Text(itemList[index][0], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
                                     ],
