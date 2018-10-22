@@ -115,7 +115,7 @@ class Item_Box extends State<ItemBox>{
                                         height: 60.0,
                                         width: 75.0,
                                         color: Colors.white,
-                                        child: new Icon( IconData(int.tryParse(itemList[index][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF6CA97), size: 44.0,),
+                                        child: new Icon(IconData(int.tryParse(itemList[index][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF6CA97), size: 44.0,),
                                       ),
                                     new Text(itemList[index][0], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
                                     ],
@@ -136,6 +136,7 @@ class Item_Box extends State<ItemBox>{
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        new Text(_discreteValue.toString()),
                         new Text("Weigth", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
                         /*new Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -345,7 +346,7 @@ class Item_Box extends State<ItemBox>{
                           onTap: (){
                             if (superKey.currentState.validate() ){
                               setState(() {
-                                itemNuevo = [itemList[indextipo][0], 75.00, int.tryParse(quantityController.text), "pair", int.tryParse(costController.text),descripController.text];
+                                itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text];
                               });
                               Navigator.pop(context, itemNuevo);
                             }

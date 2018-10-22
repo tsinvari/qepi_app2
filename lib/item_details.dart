@@ -33,10 +33,10 @@ calc(List itemsDe) {
   for (var i = 0; i < itemsDe.length; i++)
   {
     precioTotal = precioTotal+itemsDe[i][1];
-    itemsTotal = itemsTotal+itemsDe[i][2];
     pesoTotal = pesoTotal+itemsDe[i][4];
 
   }
+  itemsTotal = itemsDe.length;
   var total = [(pesoTotal/1000),itemsTotal,precioTotal];
   return total;
 }
@@ -58,7 +58,14 @@ class Item_Details extends State<ItemDetails>{
   }
   var itemsDe = [];
   var enviar;
-
+  var itemList = [['Chocolates', '0xe811'],
+  ['Souvenirs', '0xe80d'],
+  ['Sweater', '0xe810'],
+  ['Cellphones', '0xe80e'],
+  ['Pants', '0xe812'],
+  ['Food', '0xe80f'],
+  ['Jewerly', '0xe80c'],
+  ['Shooes', '0xe813']];
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +166,7 @@ class Item_Details extends State<ItemDetails>{
                             child: new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                new Text(itemsDe[(index-1)][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
+                                new Text(itemList[itemsDe[(index-1)][0]][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
                                 new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 14.0, fontWeight: FontWeight.normal,),),
                               ],
                             ),
@@ -171,7 +178,7 @@ class Item_Details extends State<ItemDetails>{
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                new Icon(Icons.school, color: const Color(0xFFF09731),size: 50.0,),
+                                new Icon(IconData(int.tryParse(itemList[itemsDe[(index-1)][0]][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF09731), size: 50.0,),
                                 new Column(
                                   children: <Widget>[
                                     new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
