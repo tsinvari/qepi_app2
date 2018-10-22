@@ -177,12 +177,25 @@ class Search extends  State<SearchTraveler> {
                             children: <Widget>[
                               new Text("Weigth", style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),),
                               //new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,)
-                              new Slider(
+                      /*SliderTheme(
+                        data: theme.sliderTheme.copyWith(
+                          activeTrackColor: Colors.deepPurple,
+                          inactiveTrackColor: Colors.black26,
+                          activeTickMarkColor: Colors.white70,
+                          inactiveTickMarkColor: Colors.black,
+                          overlayColor: Colors.black12,
+                          thumbColor: Colors.deepPurple,
+                          valueIndicatorColor: Colors.deepPurpleAccent,
+                          thumbShape: _CustomThumbShape(),
+                          valueIndicatorShape: _CustomValueIndicatorShape(),
+                          valueIndicatorTextStyle: theme.accentTextTheme.body2.copyWith(color: Colors.black87),
+                        ),
+                        child: */new Slider(
                                 value: _discreteValue,
                                 min: 0.0,
                                 max: 10.0,
-                                activeColor: const Color(0xFFffd85f),
-                                inactiveColor: const Color(0xFFffd85f),
+                                activeColor: Colors.white,
+                                inactiveColor: const Color(0xFFF8BA73),
                                 divisions: 100,
                                 label: '${_discreteValue.round()}',
                                 onChanged: (double value) {
@@ -191,6 +204,7 @@ class Search extends  State<SearchTraveler> {
                                   });
                                 },
                               ),
+                      //),
                               new Text(_discreteValue.round().toString(), style: new TextStyle(color: Colors.white, fontFamily: "Gibson",fontSize: 16.0),textAlign: TextAlign.right,),
                             ],
                           ),

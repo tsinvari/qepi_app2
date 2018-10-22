@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-
+double _discreteValue = 0.0;
 class ItemBox extends StatefulWidget{
   Item_Box createState()=> Item_Box();
 }
+var valueQttType = "pieces";
 
 class Item_Box extends State<ItemBox>{
   var itemNuevo;
-  var itemList = ['Chocolates', 'Recuerdos', 'Chompas', 'Celulares'];
+  var itemList = [['Chocolates', '0xe811'],
+                  ['Souvenirs', '0xe80d'],
+                  ['Sweater', '0xe810'],
+                  ['Cellphones', '0xe80e'],
+                  ['Pants', '0xe812'],
+                  ['Food', '0xe80f'],
+                  ['Jewerly', '0xe80c'],
+                  ['Shooes', '0xe813']];
   var colortipo = Colors.white;
-  var indextipo = 0;
+  var colorFont = const Color(0xFF5A5859);
+  var indextipo;
+  var iconType = '0xe813';
 
 
   final quantityController = TextEditingController();
@@ -52,7 +62,7 @@ class Item_Box extends State<ItemBox>{
               children: <Widget>[
                 new Card(
                   child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    //mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       new Container(
@@ -67,43 +77,49 @@ class Item_Box extends State<ItemBox>{
                           children: List.generate(itemList.length, (index) {
                             if (index == indextipo){
                               return new Card(
+                                color: colortipo,
                                 child: new Stack(alignment: const Alignment(0.0, 0.0),
                                   children: <Widget>[
                                     new Container(
                                         height: 60.0,
                                         width: 75.0,
                                         color: colortipo,
-                                        child: new IconButton(icon: new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), size: 44.0, color: const Color(0xFFF6CA97),),
+                                        child: new IconButton(icon: new Icon(const IconData(0xe80d, fontFamily: "QepiIconsItemTypes"), size: 44.0, color: colorFont,),
                                             onPressed: (){
                                               setState(() {
                                                 indextipo = index;
-                                                colortipo = Colors.orangeAccent;
+                                                colortipo = const Color(0xFFF09731);
+                                                colorFont = Colors.white;
+                                                iconType = itemList[index][1];
                                               });
                                             })
                                     ),
-                                    new Text(itemList[index], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
+                                    //new Text(itemList[index], style: new TextStyle(color: colorFont, fontSize: 13.0, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               );
-                            }else
-                            {
+                            }else {
                               return new Card(
-                                child: new Stack(alignment: const Alignment(0.0, 0.0),
+                                child: new InkWell(
+                                  onTap:(){
+                                    setState(() {
+                                      indextipo = index;
+                                      colortipo = const Color(0xFFF09731);
+                                      colorFont = Colors.white;
+                                      iconType = itemList[index][1];
+                                    });
+                                  },
+                                  child: new Stack(alignment: const Alignment(0.0, 0.0),
                                   children: <Widget>[
-                                    new Container(
+                                      new Container(
                                         height: 60.0,
                                         width: 75.0,
                                         color: Colors.white,
-                                        child: new IconButton(icon: new Icon(const IconData(0xe80b, fontFamily: "QepiIcons"), size: 44.0, color: const Color(0xFFF6CA97),),
-                                            onPressed: (){
-                                              setState(() {
-                                                indextipo = index;
-                                                colortipo = Colors.orangeAccent;
-                                              });
-                                            })
-                                    ),
-                                    new Text(itemList[index], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
-                                  ],
+                                        child: new Icon(const IconData(0xe80d, fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF6CA97), size: 44.0,),
+                                      ),
+                                    new Text(itemList[index][0], style: new TextStyle(color: const Color(0xFF5A5859), fontSize: 13.0, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
                                 ),
                               );
                             }
@@ -121,7 +137,43 @@ class Item_Box extends State<ItemBox>{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Text("Weigth", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
-                        new Slider(value: 5.0, min: 0.0, max: 10.0, divisions: 10, onChanged: null, activeColor: Colors.white, inactiveColor: Colors.white,),
+                        /*new Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: *///new Row(
+                            //mainAxisSize: MainAxisSize.max,
+                            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                           // children: <Widget>[
+                              new Container(
+                                padding: EdgeInsets.only(top: 10.0),
+                                child: new Slider(
+                                  value: _discreteValue,
+                                  min: 0.0,
+                                  max: 5000.0,
+                                  activeColor: const Color(0xFFffd85f),
+                                  inactiveColor: const Color(0xFFE0E0E0),
+                                  divisions: 100,
+                                  label: '${_discreteValue.round()}',
+                                  onChanged: (double value) {
+                                    setState(() {
+                                      _discreteValue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                              new Container(
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: new Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    new Text("50 gr",style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFF5A5859), fontWeight: FontWeight.normal,),),
+                                    new Text("5000 gr",style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFF5A5859), fontWeight: FontWeight.normal,),),
+                                  ],
+                                ),
+                              ),
+                            //],
+                          //),
+                        //),
                       ],
                     ),
                   ),
@@ -135,35 +187,61 @@ class Item_Box extends State<ItemBox>{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Text("Quantity", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
-                        new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            new Flexible(
-                                //child: new Form(
+                        new Container(
+                          padding: EdgeInsets.symmetric(horizontal: 115.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              new Flexible(
+                                child: new Container(
+                                  padding: EdgeInsets.only(left:10.0,right: 20.0),
                                   child: new TextFormField(
                                     decoration: new InputDecoration(
-                                      hintText: "3",
+                                      hintText: "1",
                                       hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
-                                      border: InputBorder.none,
+                                      //border: InputBorder.none,
                                     ),
                                     controller: quantityController,
                                     validator: (value){
                                       if (value.isEmpty)
-                                      {return 'Please enter some text';}
+                                      {return 'Please enter the quantity of items';}
                                     },
+                                    style: new TextStyle(fontFamily: "Gibson", color: const Color(0xFF5A5958),),
                                   ),
-                                //)
-                            ),
-                          ],
+                                ),
+                              ),
+                              new DropdownButton<String>(
+                                hint: new Text(valueQttType, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
+                                items: <String>['pieces', 'pair', 'pac'].map((String valueQttType) {
+                                  return new DropdownMenuItem<String>(
+                                    value: valueQttType,
+                                    child: new Text(valueQttType, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0)),
+                                  );
+                                }).toList(),
+                                style: new TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily: "Gibson",
+                                  color: const Color(0xFF5A5958),),
+                                iconSize: 30.0,
+                                onChanged: (String selectedWQType) {
+                                  //print("Selected city $selectedMonth, we are going to refresh the UI");
+                                  setState(() {
+                                    valueQttType = selectedWQType;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                        new Row(
+                        /*new Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             new Text("Pieces"),
                             new Text("Pac"),
                             new Text("Pair"),
                           ],
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -173,28 +251,35 @@ class Item_Box extends State<ItemBox>{
                   child: new Container(
                     padding: EdgeInsets.only(top: 10.0, right: 15.0, left: 15.0, bottom: 20.0),
                     child: new Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Text("Cost", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
-                        new Center(
-                          child: new Container(
-                              //child: new Form(
-                                child: new TextFormField(
-                                  decoration: new InputDecoration(
-                                    hintText: "100.00",
-                                    hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
-                                    border: InputBorder.none,
-                                  ),
-                                  controller: costController,
-                                  validator: (value){
-                                    if (value.isEmpty)
-                                    {return 'Please enter some text';}
-                                  },
+                          new Container(
+                            padding: EdgeInsets.symmetric(horizontal: 130.0),
+                                child: new Row(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    new Flexible(
+                                    child: new TextFormField(
+                                      decoration: new InputDecoration(
+                                        hintText: "100.00",
+                                        hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson", fontWeight: FontWeight.normal,),
+                                        //border: InputBorder.none,
+                                      ),
+                                      //textAlign: TextAlign.center,
+                                      controller: costController,
+                                      validator: (value){
+                                        if (value.isEmpty)
+                                        {return 'Please enter the cost of the item';}
+                                      },
+                                      style: new TextStyle(fontFamily: "Gibson", color: const Color(0xFF5A5958),),
+                                    ),
+                                    ),
+                                    new Text("€", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFF5A5958), fontWeight: FontWeight.bold,),),
+                                  ],
                                 ),
-                              //)
-                          ),
-                        ),
+                         ),
                       ],
                     ),
                   ),
@@ -260,7 +345,7 @@ class Item_Box extends State<ItemBox>{
                           onTap: (){
                             if (superKey.currentState.validate() ){
                               setState(() {
-                                itemNuevo = [itemList[indextipo], 75.00, int.tryParse(quantityController.text), "pair", int.tryParse(costController.text),descripController.text];
+                                itemNuevo = [itemList[indextipo][0], 75.00, int.tryParse(quantityController.text), "pair", int.tryParse(costController.text),descripController.text];
                               });
                               Navigator.pop(context, itemNuevo);
                             }

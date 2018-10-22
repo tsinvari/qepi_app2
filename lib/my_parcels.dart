@@ -26,9 +26,9 @@ class petitVerticalDivider extends StatelessWidget {
 }
 
 class Parcels extends StatelessWidget {
-  var paquetes = [['La Paz', 'Strasbourg', '7','5 Kg', '2/2/2018'],
-                  ['Cocha', 'Paris', '17','15 Kg', '2/2/2017'],
-                  ['Berlin', 'Bogota','3','5','23/Mar/2019']];
+  var paquetes = [['La Paz', 'Strasbourg', '7','5 Kg', '2/Feb/2018'],
+                  ['Cocha', 'Paris', '17','15 Kg', '2/Feb/2017'],
+                  ['Berlin', 'Bogota','3','5 Kg','23/Mar/2019']];
 
 
   @override
