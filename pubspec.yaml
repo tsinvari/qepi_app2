@@ -42,6 +42,9 @@ flutter:
     - family: QepiIcons
       fonts:
       - asset: fonts/QepiIcons.ttf
+    - family: QepiIconsItemTypes
+      fonts:
+      - asset: fonts/QepiIconsItemTypes.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

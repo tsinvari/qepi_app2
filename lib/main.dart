@@ -5,7 +5,13 @@ import './search_traveller.dart' as searchview;
 
 void main(){
   runApp(new MaterialApp(
-    theme: ThemeData(fontFamily: 'Gibson'),
+    theme: ThemeData(fontFamily: 'Gibson',
+      primaryColor: const Color(0xFFF09731),
+      primarySwatch: Colors.orange,
+      //brightness: Brightness.light,
+      textSelectionHandleColor: const Color(0xFFF09731),
+      //sliderTheme:
+    ),
     title: "Tab Bar",
     home: new Home(),
   ));
