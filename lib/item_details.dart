@@ -157,7 +157,8 @@ class Item_Details extends State<ItemDetails>{
                     child: FlatButton(
                       child: const Icon(Icons.add,color: const Color(0xFFF09731),size: 50.0,),
                       onPressed: () async {
-                        final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemBox()));
+                        var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: ['a']));
+                        final result = await Navigator.of(context).push(route);
                         if (result != null)
                         setState(() {
                             itemsDe.add(result);});
@@ -166,74 +167,97 @@ class Item_Details extends State<ItemDetails>{
                   );}
                   else {
                   return new Card(
-                    child: new Container(
-                      decoration: new BoxDecoration(
-                          border: new Border.all(color: const Color(0xFFFBDDBB))
-                      ),
-                      child: new Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          new Container(
-                            padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 10.0, bottom: 10.0),
-                            child: new Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                new Text(itemList[itemsDe[(index-1)][0]][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
-                                new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
-
-                              ],
-                            ),
+                    child: new GestureDetector(
+                        onTap: () async {
+                          var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: itemsDe[index-1], indexSel: index));
+                          final result = await Navigator.of(context).push(route);
+                          if (result != null)
+                            setState(() {
+                              if (result[6]!='m'){
+                              itemsDe.add(result);}
+                              else
+                                {
+                                  itemsDe[result[7]-1][0]=result[0];
+                                  itemsDe[result[7]-1][1]=result[1];
+                                  itemsDe[result[7]-1][2]=result[2];
+                                  itemsDe[result[7]-1][3]=result[3];
+                                  itemsDe[result[7]-1][4]=result[4];
+                                  itemsDe[result[7]-1][5]=result[5];
+                                }
+                            });
+                        },
+                        child: new Container(
+                          decoration: new BoxDecoration(
+                              border: new Border.all(color: const Color(0xFFFBDDBB))
                           ),
-                          new HorizontalDivider(),
-                          new Container(
-                            padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
-                            child:
-                            new Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                new Icon(IconData(int.tryParse(itemList[itemsDe[(index-1)][0]][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF09731), size: 50.0,),
-                                new Column(
+                          child: new Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              new Container(
+                                padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 10.0, bottom: 10.0),
+                                child: new Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
-                                    new petitHorizontalDivider(),
-                                    new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                    new Text(itemList[itemsDe[(index-1)][0]][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
+                                    new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
+
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          new Container(
-                            padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 5.0, bottom: 10.0),
-                            child:
-                            new Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                new Flexible(
-                                  child: new Text(itemsDe[(index-1)][5],
-                                    style: TextStyle(color: const Color(0xFF5A5859),),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: true,
-                                  ),
+                              ),
+                              new HorizontalDivider(),
+                              new Container(
+                                padding: EdgeInsets.only(left: 25.0, right: 25.0,top: 10.0, bottom: 10.0),
+                                child:
+                                new Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    new Icon(IconData(int.tryParse(itemList[itemsDe[(index-1)][0]][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF09731), size: 50.0,),
+                                    new Column(
+                                      children: <Widget>[
+                                        new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
+                                        new petitHorizontalDivider(),
+                                        new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              new Container(
+                                padding: EdgeInsets.only(left: 15.0, right: 25.0,top: 5.0, bottom: 10.0),
+                                child:
+                                new Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    new Flexible(
+                                      child: new Text(itemsDe[(index-1)][5],
+                                        style: TextStyle(color: const Color(0xFF5A5859),),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        softWrap: true,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              new HorizontalDividerBottom(),
+                              new InkWell(
+                                onTap: (){
+                                  setState(() {
+                                    itemsDe.removeAt(index-1);
+                                  });
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                                },
+                                child: new Container (
+                                  padding: EdgeInsets.only( top: 2.0, bottom: 2.0),
+                                  child: new Icon(Icons.delete, size: 18.0,),
+                                  width: 20.0,
+                                  height: 20.0,
+                                ),
+                              ),
+                            ],
                           ),
-                          new HorizontalDividerBottom(),
-                          new InkWell(
-                            onTap: (){
-                              //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
-                            },
-                            child: new Container (
-                              padding: EdgeInsets.only(top: 2.0, bottom: 25.0),
-                              child: new Icon(Icons.delete),
-                              width: 180.0,
-                              height: 60.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                    )
                   );}
                 }),
               ),

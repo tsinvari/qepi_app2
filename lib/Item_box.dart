@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:convert';
 
 double _discreteValue = 0.0;
 class ItemBox extends StatefulWidget{
+  final int indexSel;
+  final List value;
+  ItemBox({Key key, this.value, this.indexSel}) : super (key: key);
+  @override
   Item_Box createState()=> Item_Box();
 }
 var valueQttType = "pieces";
@@ -22,7 +27,6 @@ class Item_Box extends State<ItemBox>{
   var indextipo;
   var iconType = '0xe813';
 
-
   final quantityController = TextEditingController();
   final costController = TextEditingController();
   final descripController = TextEditingController();
@@ -30,6 +34,25 @@ class Item_Box extends State<ItemBox>{
   final quantityKey = GlobalKey<FormState>();
   final descripKey = GlobalKey<FormState>();
   final superKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    var result = widget.value;
+  //  var result1 = '${widget.value}';
+    if (result.length >1)
+    {
+      indextipo = result[0];
+      costController.text = result[1].toString();
+      quantityController.text = result[2].toString();
+      valueQttType = result[3].toString();
+      _discreteValue = double.tryParse(result[4].toString());
+      descripController.text = result[5].toString();
+      colortipo = const Color(0xFFF09731);
+    }
+
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the Widget is disposed
@@ -53,8 +76,9 @@ class Item_Box extends State<ItemBox>{
           ),
           iconTheme: new IconThemeData(color: Colors.white),
         ),
+
         backgroundColor: const Color(0xFFfcf9f4),
-      body: new Container(
+        body: new Container(
           child:
           new Form(
             key: superKey,
@@ -324,7 +348,9 @@ class Item_Box extends State<ItemBox>{
                                         borderRadius: new BorderRadius.circular(5.0),
                                         borderSide: BorderSide(color: const Color(0xFFF09731))
                                     ),
+
                                     hintText: "Some things that my friend loves from Bolivia...",
+                                    //hintText: '${widget.value}',
                                     hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
                                   ),
                                   controller: descripController,
@@ -352,9 +378,13 @@ class Item_Box extends State<ItemBox>{
                         child: new InkWell(
                           onTap: (){
                             if (superKey.currentState.validate() ){
+                              if (widget.value.length == 1){
                               setState(() {
-                                itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text];
-                              });
+                                itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text,'n',0];
+                              });}
+                              else{
+                                itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text,'m',widget.indexSel];
+                              }
                               Navigator.pop(context, itemNuevo);
                             }
                           },
