@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './item_details.dart';
 import 'dart:async';
+import './my_parcels.dart';
 
 class HorizontalDivider extends StatelessWidget {
   @override
@@ -27,10 +28,12 @@ class VerticalDivider extends StatelessWidget {
 
 var valueMonth = "Month";
 var valueHeigth = "Heigth";
-var valueWeigth = "Weigth";
-var valueX = "Heigth";
+var valueWidth = "Width";
+var valueLength = "Length";
 var x = "";
 var itemvalues = ['0','0','0'];
+var parcelitems = [];
+var parceldetails = [];
 
 class CreateParcel extends StatefulWidget{
   Create_Parcel createState()=> Create_Parcel();
@@ -49,6 +52,7 @@ class Create_Parcel extends State<CreateParcel>{
 
   final fromController = TextEditingController();
   final toController = TextEditingController();
+  final parcelDescController = TextEditingController();
 
   @override
   void dispose() {
@@ -56,6 +60,16 @@ class Create_Parcel extends State<CreateParcel>{
     fromController.dispose();
     toController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    valueMonth = "Month";
+    valueHeigth = "Heigth";
+    valueWidth = "Width";
+    valueLength = "Length";
+
   }
 
 
@@ -207,11 +221,11 @@ class Create_Parcel extends State<CreateParcel>{
                                 ),
                                 new Text("cm      ", style: new TextStyle(fontSize: 16.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,)),
                                 new DropdownButton<String>(
-                                  hint: new Text(valueWeigth, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
-                                  items: <String>['10', '20', '30', '40', '50', '60', '70', '80','90','100'].map((String valueWeigth) {
+                                  hint: new Text(valueWidth, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
+                                  items: <String>['10', '20', '30', '40', '50', '60', '70', '80','90','100'].map((String valueWidth) {
                                     return new DropdownMenuItem<String>(
-                                      value: valueWeigth,
-                                      child: new Text(valueWeigth, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0)),
+                                      value: valueWidth,
+                                      child: new Text(valueWidth, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0)),
                                     );
                                   }).toList(),
                                   style: new TextStyle(
@@ -220,33 +234,33 @@ class Create_Parcel extends State<CreateParcel>{
                                     fontFamily: "Gibson",
                                     color: const Color(0xFF5A5958),),
                                   iconSize: 30.0,
-                                  onChanged: (String selectedWeigth) {
+                                  onChanged: (String selectedWidth) {
                                     //print("Selected city $selectedMonth, we are going to refresh the UI");
                                     setState(() {
-                                      valueWeigth = selectedWeigth;
+                                      valueWidth = selectedWidth;
                                     });
                                   },
                                 ),
                                 new Text("cm      ", style: new TextStyle(fontSize: 16.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,)),
                                 new DropdownButton<String>(
-                                  hint: new Text(valueX, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
-                                  items: <String>['10', '20', '30', '40', '50', '60', '70', '80','90','100'].map((String valueX) {
+                                  hint: new Text(valueLength, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0),),
+                                  items: <String>['10', '20', '30', '40', '50', '60', '70', '80','90','100'].map((String valueLength) {
                                     return new DropdownMenuItem<String>(
-                                      value: valueX,
-                                      child: new Text(valueX, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0)),
+                                      value: valueLength,
+                                      child: new Text(valueLength, style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 16.0)),
                                     );
                                   }).toList(),
-                                  //value: valueX,
+                                  //value: valueLength,
                                   style: new TextStyle(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.normal,
                                     fontFamily: "Gibson",
                                     color: const Color(0xFF5A5958),),
                                   iconSize: 30.0,
-                                  onChanged: (String selectedX) {
+                                  onChanged: (String selectedLength) {
                                     //print("Selected city $selectedMonth, we are going to refresh the UI");
                                     setState(() {
-                                      valueX = selectedX;
+                                      valueLength = selectedLength;
                                     });
                                   },
                                 ),
@@ -264,11 +278,16 @@ class Create_Parcel extends State<CreateParcel>{
             new Card(
             child: new InkWell(
             onTap: () async {
-                final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetails()));
+              var route = new MaterialPageRoute(builder: (context) =>  ItemDetails(value: parcelitems));
+              final result = await Navigator.of(context).push(route);
                 if (result != null)
                   setState(() {
-                    itemvalues.removeRange(0, 2);
-                    itemvalues = result;
+                   // itemvalues.removeRange(0, 2);
+                    itemvalues[0] = result[0];
+                    itemvalues[1] = result[1];
+                    itemvalues[2] = result[2];
+                   parcelitems = result[3];
+                   // parceldetails = result[3];
                   });
               },
               child: new Container(
@@ -339,6 +358,7 @@ class Create_Parcel extends State<CreateParcel>{
                               hintText: "Some things that my friend loves from Bolivia...",
                               hintStyle: new TextStyle(color: const Color(0xFFB9B9B9),fontFamily: "Gibson"),
                             ),
+                            controller: parcelDescController,
                             style: new TextStyle(fontFamily: "Gibson", fontSize: 15.0, color: const Color(0xFF5A5859), fontWeight: FontWeight.normal,),
                           ),
                         ],
@@ -420,7 +440,10 @@ class Create_Parcel extends State<CreateParcel>{
                   child: new Material(
                     child: new InkWell(
                       onTap: (){
-                        //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                        setState(() {
+                          parceldetails = [toController.text,fromController.text, itemvalues[0],itemvalues[1], valueMonth, valueHeigth, valueWidth, valueLength, parcelDescController.text,parcelitems];
+                        });
+                         Navigator.pop(context, parceldetails);
                       },
                       child: new Container(
                         width: 350.0,

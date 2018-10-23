@@ -25,10 +25,12 @@ class petitVerticalDivider extends StatelessWidget {
   }
 }
 
-class Parcels extends StatelessWidget {
-  var paquetes = [['La Paz', 'Strasbourg', '7','5 Kg', '2/Feb/2018'],
-                  ['Cocha', 'Paris', '17','15 Kg', '2/Feb/2017'],
-                  ['Berlin', 'Bogota','3','5 Kg','23/Mar/2019']];
+class Parcels extends StatefulWidget{
+  My_Parcels createState()=> My_Parcels();
+}
+
+class My_Parcels extends State<Parcels> {
+  var paquetes = [];
 
 
   @override
@@ -45,7 +47,22 @@ class Parcels extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                 child: new Material(
                   child: new InkWell(
-                    onTap: (){
+                    onTap:
+                          () async {
+                        var route = new MaterialPageRoute(builder: (context) =>  CreateParcel());
+                        final result = await Navigator.push(context, route);
+                        if (result != null)
+                          setState(() {
+                            var paq = ['to','from','peso','items','fecha'];
+                            paq[0] = result[0];
+                            paq[1] = result[1];
+                            paq[2] = result[2];
+                            paq[3] = result[3];
+                            paq[4] = result[4];
+                            paquetes.add(paq);
+
+                            // parceldetails = result[3];
+                          });
                       Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
                     },
                     child: new Container(
@@ -141,7 +158,7 @@ class Parcels extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                new Text(paquetes[index][2],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
+                                new Text(paquetes[index][2]+' Kg',style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
                                 new petitVerticalDivider(),
                                 new Icon(const IconData(0xe803, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                                 new Text(paquetes[index][3],style: new TextStyle(color: const Color(0xFF5A5958), fontFamily: "Gibson",fontSize: 12.0,),),
