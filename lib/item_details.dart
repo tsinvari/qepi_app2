@@ -26,6 +26,18 @@ class petitHorizontalDivider extends StatelessWidget {
   }
 }
 
+class HorizontalDividerBottom extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      height: 1.0,
+      width: 180.0,
+      color: const Color(0xFFE6E6E6),
+      margin: const EdgeInsets.only(left: 0.0, top: 0.1, bottom: 0.1),
+    );
+  }
+}
+
 calc(List itemsDe) {
   var pesoTotal = 0.0;
   var itemsTotal = 0;
@@ -100,6 +112,7 @@ class Item_Details extends State<ItemDetails>{
                     new Container(
                       padding: EdgeInsets.only(bottom: 25.0),
                       child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
                         ],
@@ -143,14 +156,13 @@ class Item_Details extends State<ItemDetails>{
                   {return new Card(
                     child: FlatButton(
                       child: const Icon(Icons.add,color: const Color(0xFFF09731),size: 50.0,),
-                  onPressed: () async {
+                      onPressed: () async {
                         final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemBox()));
                         if (result != null)
                         setState(() {
                             itemsDe.add(result);});
-                  },
-
-                  ),
+                      },
+                    ),
                   );}
                   else {
                   return new Card(
@@ -167,7 +179,8 @@ class Item_Details extends State<ItemDetails>{
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 new Text(itemList[itemsDe[(index-1)][0]][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
-                                new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859), fontSize: 14.0, fontWeight: FontWeight.normal,),),
+                                new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
+
                               ],
                             ),
                           ),
@@ -183,7 +196,7 @@ class Item_Details extends State<ItemDetails>{
                                   children: <Widget>[
                                     new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
                                     new petitHorizontalDivider(),
-                                    new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                    new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859),),),
                                   ],
                                 ),
                               ],
@@ -204,6 +217,18 @@ class Item_Details extends State<ItemDetails>{
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          new HorizontalDividerBottom(),
+                          new InkWell(
+                            onTap: (){
+                              //Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                            },
+                            child: new Container (
+                              padding: EdgeInsets.only(top: 2.0, bottom: 25.0),
+                              child: new Icon(Icons.delete),
+                              width: 180.0,
+                              height: 60.0,
                             ),
                           ),
                         ],

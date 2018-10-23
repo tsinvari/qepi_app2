@@ -71,7 +71,7 @@ class Item_Box extends State<ItemBox>{
                       ),
                       new Container(
                         color: const Color(0xFFfcf9f4),
-                        height: 80.0,
+                        height:80.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: List.generate(itemList.length, (index) {
@@ -136,8 +136,15 @@ class Item_Box extends State<ItemBox>{
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text(_discreteValue.toString()),
-                        new Text("Weigth", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
+                        new Container (
+                          child: new Row(
+                            children: <Widget>[
+                              new Text("Weigth   ", style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFFB9B9B9), fontWeight: FontWeight.normal,),),
+                              new Text(_discreteValue.round().toString(),style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson", color: const Color(0xFF5A5859), fontWeight: FontWeight.normal,),),
+                            ]
+                          )
+                        ),
+
                         /*new Container(
                           padding: EdgeInsets.symmetric(horizontal: 10.0),
                           child: *///new Row(
