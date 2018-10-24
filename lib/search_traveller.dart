@@ -23,7 +23,7 @@ class PetitVerticalDivider extends StatelessWidget {
       height: 20.0,
       width: 0.6,
       color: const Color(0xFFF09731),
-      margin: const EdgeInsets.only(left: 25.0, right: 25.0),
+      margin: const EdgeInsets.only(left: 15.0, right: 15.0),
     );
   }
 }
@@ -63,9 +63,12 @@ class Search extends  State<SearchTraveler> {
   final fromControllerSearch = TextEditingController();
   final toControllerSearch = TextEditingController();
 
-  var travelers = [  ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018'],
-                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017'],
-                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017']];
+  var travelers = [  ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018', 
+                                      'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
+                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 
+                                      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'],
+                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 
+                                      'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg']];
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -85,6 +88,7 @@ class Search extends  State<SearchTraveler> {
               ),
                 child: new ExpansionTile(
                   initiallyExpanded: false,
+                  //trailing: new Icon(Icons.search, color: Colors.white, ), //change icon
                   title: new Row (
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -193,7 +197,7 @@ class Search extends  State<SearchTraveler> {
                         child: */new Slider(
                                 value: _discreteValue,
                                 min: 0.0,
-                                max: 10.0,
+                                max: 5000.0,
                                 activeColor: Colors.white,
                                 inactiveColor: const Color(0xFFF8BA73),
                                 divisions: 100,
@@ -259,11 +263,11 @@ class Search extends  State<SearchTraveler> {
 
             new Expanded(
               child: new Container(
-                padding: const EdgeInsets.symmetric(horizontal: 3.0, ),
+                //padding: const EdgeInsets.symmetric(horizontal: 3.0, ),
                 color: const Color(0xFFfcf9f4),
                 child: new ListView.builder(
                   itemCount: travelers.length,
-                  itemExtent: 150.0,
+                  itemExtent: 160.0,
                   itemBuilder: (BuildContext context, int index){
                     return new Card(
                         child: new InkWell(
@@ -275,8 +279,17 @@ class Search extends  State<SearchTraveler> {
                           children: <Widget>[
                             new ListTile(
                               leading:
-                                  new Icon(Icons.person, color: const Color(0xFF5a5859), size: 18.0,),
-                                title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
+                                  new Container(
+                                    decoration: new BoxDecoration(
+                                        border: new Border.all(color: const Color(0xFFF09731), width: 4.0)
+                                    ),
+                                    height: 100.0,
+                                    width: 90.0,
+                                    child: Image.network('${travelers[index][6].toString()}'),
+                                        fit: BoxFit.cover
+                                    ),
+                                  ),
+                                title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -291,24 +304,24 @@ class Search extends  State<SearchTraveler> {
                                          return new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,);
                                           }
                                       })
-
                                   ),
                                   new Container(
                                     padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
                                     child: new Text(travelers[index][2],
-                                      style: new TextStyle(fontSize: 13.0,color: const Color(0xFF5A5958),),),
+                                    style: new TextStyle(fontSize: 13.0,color: const Color(0xFF5A5958),),),
                                   ),
                                   new Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][3]+" Kg", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][3]+" Kg", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                       new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][4]+" €", style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][4]+" €", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                       new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][5], style: new TextStyle(fontSize: 12.0,color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index][5], style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                     ],
                                   ),
                                 ],

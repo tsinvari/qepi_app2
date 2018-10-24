@@ -63,7 +63,11 @@ class DetailTraveler extends StatelessWidget{
                                 border: new Border.all(color: const Color(0xFFFBDDBB))
                             ),
                             //padding: EdgeInsets.only(bottom: 15.0, top: 15.0, left: 15.0, right: 15.0),
-                            child: new Icon(Icons.person, color: const Color(0xFF5a5859), size: 25.0,)
+                            child: //new Icon(Icons.person, color: const Color(0xFF5a5859), size: 25.0,)
+                            Image.network(
+                                      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg',
+                                        fit: BoxFit.cover
+                                    ),
                         ),
                         title: new Text("Ne MICHEL", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                         subtitle: new Column(
@@ -154,7 +158,11 @@ class DetailTraveler extends StatelessWidget{
                               decoration: new BoxDecoration(
                                   border: new Border.all(color: const Color(0xFFFBDDBB))
                               ),
-                              child: new Icon(Icons.person, color: const Color(0xFF5a5859), size: 25.0,)
+                              child: //new Icon(Icons.person, color: const Color(0xFF5a5859), size: 25.0,)
+                              Image.network(
+                                      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg',
+                                        fit: BoxFit.cover
+                                    ),
                           ),
                         ],
                       ),
