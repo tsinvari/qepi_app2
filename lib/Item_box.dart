@@ -26,6 +26,15 @@ class Item_Box extends State<ItemBox>{
   var colorFont = const Color(0xFF5A5859);
   var indextipo;
   var iconType = '0xe813';
+  Map <String, String> itemMap = {
+    'indexTipo': '',
+    'precio' : '',
+    'quantity': '',
+    'valueQttType': '',
+    'peso': '',
+    'description': '',
+    'itemIndex': ''
+  };
 
   final quantityController = TextEditingController();
   final costController = TextEditingController();
@@ -381,12 +390,26 @@ class Item_Box extends State<ItemBox>{
                             if (superKey.currentState.validate() ){
                               if (widget.value.length == 1){
                               setState(() {
+                                itemMap['indexTipo'] = indextipo.toString();
+                                itemMap['precio']= costController.text.toString();
+                                itemMap['quantity'] = quantityController.text.toString();
+                                itemMap['valueQttType'] = valueQttType.toString();
+                                itemMap['peso'] = _discreteValue.round().toString();
+                                itemMap['description'] = descripController.text.toString();
+                                itemMap['itemIndex'] = '0';
                                 itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text,'n',0];
                               });}
                               else{
+                                itemMap['indexTipo'] = indextipo.toString();
+                                itemMap['precio']= costController.text.toString();
+                                itemMap['quantity'] = quantityController.text.toString();
+                                itemMap['valueQttType'] = valueQttType.toString();
+                                itemMap['peso'] = _discreteValue.round().toString();
+                                itemMap['description'] = descripController.text.toString();
+                                itemMap['itemIndex'] = widget.indexSel.toString();
                                 itemNuevo = [indextipo, int.tryParse(costController.text), int.tryParse(quantityController.text), valueQttType, _discreteValue.round(),descripController.text,'m',widget.indexSel];
                               }
-                              Navigator.pop(context, itemNuevo);
+                              Navigator.pop(context, itemMap);
                             }
                           },
                           child: new Container(

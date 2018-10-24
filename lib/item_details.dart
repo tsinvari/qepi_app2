@@ -44,8 +44,8 @@ calc(List itemsDe) {
   var precioTotal = 0.0;
   for (var i = 0; i < itemsDe.length; i++)
   {
-    precioTotal = precioTotal+itemsDe[i][1];
-    pesoTotal = pesoTotal+itemsDe[i][4];
+    precioTotal = precioTotal+int.tryParse(itemsDe[i]['precio']);
+    pesoTotal = pesoTotal+int.tryParse(itemsDe[i]['peso']);
 
   }
   itemsTotal = itemsDe.length;
@@ -176,7 +176,22 @@ class Item_Details extends State<ItemDetails>{
                         var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: ['a']));
                         final result = await Navigator.of(context).push(route);
                         setState(() {
-                            itemsDe.add(result);});
+                          Map <String, String> Temp = {
+                            'indexTipo': '',
+                            'precio' : '',
+                            'quantity': '',
+                            'valueQttType': '',
+                            'peso': '',
+                            'description': '',
+                          };
+                          Temp['indexTipo'] = result['indexTipo'];
+                          Temp['precio'] = result['precio'];
+                          Temp['quantity']= result['quantity'];
+                          Temp['valueQttType']= result['valueQttType'];
+                          Temp['peso']= result['peso'];
+                          Temp['description']= result['description'];
+
+                          itemsDe.add(Temp);});
                       },
                     ),
                   );}
@@ -188,12 +203,19 @@ class Item_Details extends State<ItemDetails>{
                           final result = await Navigator.of(context).push(route);
                           if (result != null)
                             setState(() {
-                                  itemsDe[result[7]-1][0]=result[0];
+                                /*  itemsDe[result[7]-1][0]=result[0];
                                   itemsDe[result[7]-1][1]=result[1];
                                   itemsDe[result[7]-1][2]=result[2];
                                   itemsDe[result[7]-1][3]=result[3];
                                   itemsDe[result[7]-1][4]=result[4];
-                                  itemsDe[result[7]-1][5]=result[5];
+                                  itemsDe[result[7]-1][5]=result[5]; */
+                              itemsDe[result[7]-1][0]=result[0];
+                              itemsDe[result[7]-1][1]=result[1];
+                              itemsDe[result[7]-1][2]=result[2];
+                              itemsDe[result[7]-1][3]=result[3];
+                              itemsDe[result[7]-1][4]=result[4];
+                              itemsDe[result[7]-1][5]=result[5];
+
 
                             });
                         },
@@ -209,7 +231,7 @@ class Item_Details extends State<ItemDetails>{
                                 child: new Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    new Text(itemList[itemsDe[(index-1)][0]][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
+                                    new Text(itemList[int.tryParse(itemsDe[(index-1)]['indexTipo'])][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
                                     new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
 
                                   ],
@@ -222,12 +244,12 @@ class Item_Details extends State<ItemDetails>{
                                 new Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    new Icon(IconData(int.tryParse(itemList[itemsDe[(index-1)][0]][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF09731), size: 50.0,),
+                                    new Icon(IconData(int.tryParse(itemList[int.tryParse(itemsDe[(index-1)]['indexTipo'])][1]), fontFamily: "QepiIconsItemTypes"), color: const Color(0xFFF09731), size: 50.0,),
                                     new Column(
                                       children: <Widget>[
-                                        new Text(itemsDe[(index-1)][2].toString()+" "+itemsDe[(index-1)][3], style: TextStyle(color: const Color(0xFF5A5859),),),
+                                        new Text(itemsDe[(index-1)]['quantity'].toString()+" "+itemsDe[(index-1)]['valueQttType'], style: TextStyle(color: const Color(0xFF5A5859),),),
                                         new petitHorizontalDivider(),
-                                        new Text(itemsDe[(index-1)][1].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859),),),
+                                        new Text(itemsDe[(index-1)]['precio'].toString()+" €", style: TextStyle(color: const Color(0xFF5A5859),),),
                                       ],
                                     ),
                                   ],
@@ -240,7 +262,7 @@ class Item_Details extends State<ItemDetails>{
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     new Flexible(
-                                      child: new Text(itemsDe[(index-1)][5],
+                                      child: new Text(itemsDe[(index-1)]['description'],
                                         style: TextStyle(color: const Color(0xFF5A5859),),
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
