@@ -130,7 +130,7 @@ class Item_Details extends State<ItemDetails>{
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Text ("Item details"+itemsDe.length.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
+                          new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
                         ],
                       ),
                      ),
@@ -173,7 +173,8 @@ class Item_Details extends State<ItemDetails>{
                     child: FlatButton(
                       child: const Icon(Icons.add,color: const Color(0xFFF09731),size: 50.0,),
                       onPressed: () async {
-                        var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: ['a']));
+                        Map <String, String> a ={};
+                        var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: a));
                         final result = await Navigator.of(context).push(route);
                         setState(() {
                           Map <String, String> Temp = {
@@ -203,19 +204,22 @@ class Item_Details extends State<ItemDetails>{
                           final result = await Navigator.of(context).push(route);
                           if (result != null)
                             setState(() {
-                                /*  itemsDe[result[7]-1][0]=result[0];
-                                  itemsDe[result[7]-1][1]=result[1];
-                                  itemsDe[result[7]-1][2]=result[2];
-                                  itemsDe[result[7]-1][3]=result[3];
-                                  itemsDe[result[7]-1][4]=result[4];
-                                  itemsDe[result[7]-1][5]=result[5]; */
-                              itemsDe[result[7]-1][0]=result[0];
-                              itemsDe[result[7]-1][1]=result[1];
-                              itemsDe[result[7]-1][2]=result[2];
-                              itemsDe[result[7]-1][3]=result[3];
-                              itemsDe[result[7]-1][4]=result[4];
-                              itemsDe[result[7]-1][5]=result[5];
-
+                              Map <String, String> Temp = {
+                                'indexTipo': '',
+                                'precio' : '',
+                                'quantity': '',
+                                'valueQttType': '',
+                                'peso': '',
+                                'description': '',
+                                'itemIndex':''
+                              };
+                              var i = int.tryParse(result['itemIndex'])-1;
+                              itemsDe[i]['indexTipo'] = result['indexTipo'];
+                              itemsDe[i]['precio'] = result['precio'];
+                              itemsDe[i]['quantity']= result['quantity'];
+                              itemsDe[i]['valueQttType']= result['valueQttType'];
+                              itemsDe[i]['peso']= result['peso'];
+                              itemsDe[i]['description']= result['description'];
 
                             });
                         },
@@ -232,7 +236,7 @@ class Item_Details extends State<ItemDetails>{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     new Text(itemList[int.tryParse(itemsDe[(index-1)]['indexTipo'])][0], style: TextStyle(color: const Color(0xFF5A5859), fontSize: 15.0, fontWeight: FontWeight.bold,),),
-                                    new Text(itemsDe[(index-1)][4].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
+                                    new Text(itemsDe[(index-1)]['peso'].toString()+" gr", style: TextStyle(color: const Color(0xFF5A5859),fontSize: 14.0, fontWeight: FontWeight.normal,),),
 
                                   ],
                                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './item_details.dart';
 import 'dart:async';
 import './my_parcels.dart';
+import './globals.dart' as globals;
 
 class HorizontalDivider extends StatelessWidget {
   @override
@@ -35,11 +36,13 @@ var itemvalues = ['0','0','0'];
 var parcelitems = [];
 var parceldetails = [];
 
+
 class CreateParcel extends StatefulWidget{
   Create_Parcel createState()=> Create_Parcel();
 }
 
 class Create_Parcel extends State<CreateParcel>{
+
   DateTime _date = new DateTime.now();
   TimeOfDay _time = new TimeOfDay.now();
 
@@ -61,6 +64,19 @@ class Create_Parcel extends State<CreateParcel>{
     toController.dispose();
     super.dispose();
   }
+   Map <String, List>ParcelDet = {
+    'to': [],
+    'from': [],
+    'peso': [],
+    'items': [],
+    'precio': [],
+    'mes': [],
+    'heigth': [],
+    'length': [],
+    'description': [],
+    'parcelitems':[]
+  };
+
 
   @override
   void initState() {
@@ -440,10 +456,26 @@ class Create_Parcel extends State<CreateParcel>{
                   child: new Material(
                     child: new InkWell(
                       onTap: (){
-                        setState(() {
-                          parceldetails = [toController.text,fromController.text, itemvalues[0],itemvalues[1], valueMonth, valueHeigth, valueWidth, valueLength, parcelDescController.text,parcelitems];
+
+                       setState(() {
+                         ParcelDet['to'].add(toController.text);
+                         ParcelDet['from'].add(fromController.text);
+                         ParcelDet['peso'].add(itemvalues[0]);
+                         ParcelDet['items'].add(itemvalues[1]);
+                         ParcelDet['precio'].add(itemvalues[2]);
+                         ParcelDet['mes'].add(valueMonth);
+                         ParcelDet['heigth'].add(valueHeigth);
+                         ParcelDet['length'].add(valueLength);
+                         ParcelDet['description'].add(parcelDescController.text);
+                         ParcelDet['parcelitems'].add(parcelitems);
+                         globals.allIn.add(ParcelDet);
+                         parceldetails = [toController.text,fromController.text, itemvalues[0],itemvalues[1], valueMonth, valueHeigth, valueWidth, valueLength, parcelDescController.text,parcelitems];
                         });
-                         Navigator.pop(context, parceldetails);
+                      // parcelDescController.text = globals.allIn.toString() ;
+                        Navigator.pop(context);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Parcels()));
+
+
                       },
                       child: new Container(
                         width: 350.0,

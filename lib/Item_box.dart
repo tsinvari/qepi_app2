@@ -5,7 +5,7 @@ import 'dart:convert';
 double _discreteValue = 0.0;
 class ItemBox extends StatefulWidget{
   final int indexSel;
-  final List value;
+  final Map<String, String> value;
   ItemBox({Key key, this.value, this.indexSel}) : super (key: key);
   @override
   Item_Box createState()=> Item_Box();
@@ -26,6 +26,15 @@ class Item_Box extends State<ItemBox>{
   var colorFont = const Color(0xFF5A5859);
   var indextipo;
   var iconType = '0xe813';
+
+  final quantityController = TextEditingController();
+  final costController = TextEditingController();
+  final descripController = TextEditingController();
+  final costKey = GlobalKey<FormState>();
+  final quantityKey = GlobalKey<FormState>();
+  final descripKey = GlobalKey<FormState>();
+  final superKey = GlobalKey<FormState>();
+
   Map <String, String> itemMap = {
     'indexTipo': '',
     'precio' : '',
@@ -36,27 +45,21 @@ class Item_Box extends State<ItemBox>{
     'itemIndex': ''
   };
 
-  final quantityController = TextEditingController();
-  final costController = TextEditingController();
-  final descripController = TextEditingController();
-  final costKey = GlobalKey<FormState>();
-  final quantityKey = GlobalKey<FormState>();
-  final descripKey = GlobalKey<FormState>();
-  final superKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     var result = widget.value;
   //  var result1 = '${widget.value}';
+    _discreteValue = 0.00;
     if (result.length >1)
     {
-      indextipo = result[0];
-      costController.text = result[1].toString();
-      quantityController.text = result[2].toString();
-      valueQttType = result[3].toString();
-      _discreteValue = double.tryParse(result[4].toString());
-      descripController.text = result[5].toString();
+      indextipo = int.tryParse(widget.value['indexTipo']);
+      costController.text = widget.value['precio'];
+      quantityController.text = widget.value['quantity'];
+      valueQttType = widget.value['valueQttType'];
+      _discreteValue = double.tryParse(widget.value['peso']);
+      descripController.text = widget.value['description'];
       colortipo = const Color(0xFFF09731);
       colorFont = Colors.white;
     }

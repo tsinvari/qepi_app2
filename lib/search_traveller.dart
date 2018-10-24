@@ -286,8 +286,8 @@ class Search extends  State<SearchTraveler> {
                                     height: 100.0,
                                     width: 90.0,
                                     child: Image.network('${travelers[index][6].toString()}'),
-                                        fit: BoxFit.cover
-                                    ),
+                                    //fit: BoxFit.cover,
+
                                   ),
                                 title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
@@ -327,7 +327,6 @@ class Search extends  State<SearchTraveler> {
                                 ],
 
                               )
-
 
                             ),
                           ],

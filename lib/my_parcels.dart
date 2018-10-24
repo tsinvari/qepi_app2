@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './create_parcel.dart';
+import 'globals.dart' as globals;
 
 class VerticalDivider extends StatelessWidget {
   @override
@@ -30,11 +31,46 @@ class Parcels extends StatefulWidget{
 }
 
 class My_Parcels extends State<Parcels> {
+
+
+  @override
+  void initState() {
+    super.initState();
+    //paquetes.add(paq);
+  //   paq.add(['to','from','peso','items','fecha']);
+   // paquetes.add(paq);
+  // updd();
+
+  }
+
+
   var paquetes = [];
+  var paq;
+
 
 
   @override
   Widget build(BuildContext context) {
+    updd(){
+      //paq = ['to','from','peso','items','fecha'];
+      // paquetes.add(temp);
+      //paquetes.add(paq);
+      var temp=[];
+      if (globals.allIn.length > 0) {
+        paquetes.clear();
+        for (var j = 0; j < globals.allIn.length ;j++){
+          temp = [globals.allIn[j]['from'][0].toString(),
+          globals.allIn[j]['to'][0].toString(),
+          globals.allIn[j]['peso'][0].toString(),
+          globals.allIn[j]['items'][0].toString(),
+          globals.allIn[j]['mes'][0].toString()
+          ];
+          paquetes.add(temp);
+        }
+        
+      }
+    }
+    updd();
     return new Container(
       child: new Center(
         child: new Column(
@@ -54,16 +90,16 @@ class My_Parcels extends State<Parcels> {
                         if (result != null)
                           setState(() {
                             var paq = ['to','from','peso','items','fecha'];
-                            paq[0] = result[0];
+                            /*paq[0] = result[0];
                             paq[1] = result[1];
                             paq[2] = result[2];
                             paq[3] = result[3];
-                            paq[4] = result[4];
-                            paquetes.add(paq);
+                            paq[4] = result[4];*/
+                           // paquetes.add(paq);
 
                             // parceldetails = result[3];
                           });
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
+                     // Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcel()));
                     },
                     child: new Container(
                       //width: 100.0,
