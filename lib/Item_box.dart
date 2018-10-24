@@ -49,6 +49,7 @@ class Item_Box extends State<ItemBox>{
       _discreteValue = double.tryParse(result[4].toString());
       descripController.text = result[5].toString();
       colortipo = const Color(0xFFF09731);
+      colorFont = Colors.white;
     }
 
   }

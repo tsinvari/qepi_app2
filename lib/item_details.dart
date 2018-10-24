@@ -54,6 +54,9 @@ calc(List itemsDe) {
 }
 
 class ItemDetails extends StatefulWidget{
+  final List value;
+  @override
+  ItemDetails({Key key, this.value,}) : super (key: key);
   Item_Details createState()=> Item_Details();
 }
 
@@ -69,6 +72,7 @@ class Item_Details extends State<ItemDetails>{
         lastDate: new DateTime(2019));
   }
   var itemsDe = [];
+  var enviarDe = [];
   var enviar;
   var itemList = [['Chocolates', '0xe811'],
   ['Souvenirs', '0xe80d'],
@@ -80,13 +84,25 @@ class Item_Details extends State<ItemDetails>{
   ['Shooes', '0xe813']];
 
   @override
+  void initState() {
+    super.initState();
+    var result = widget.value;
+    //  var result1 = '${widget.value}';
+    if (result.length > 0)
+    {
+      itemsDe = result;
+    }
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         leading: new IconButton(icon: new Icon(Icons.arrow_back),
             onPressed: (){
               setState(() {
-                enviar = [calc(itemsDe)[0].toString(), calc(itemsDe)[1].toString(), calc(itemsDe)[2].toString()];
+                enviar = [calc(itemsDe)[0].toString(), calc(itemsDe)[1].toString(), calc(itemsDe)[2].toString(),itemsDe];
               });
               Navigator.pop(context, enviar);
             }),
@@ -114,7 +130,7 @@ class Item_Details extends State<ItemDetails>{
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Text ("Item details", style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
+                          new Text ("Item details"+itemsDe.length.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: const Color(0xFFF09731), fontSize: 18.0),),
                         ],
                       ),
                      ),
@@ -159,7 +175,6 @@ class Item_Details extends State<ItemDetails>{
                       onPressed: () async {
                         var route = new MaterialPageRoute(builder: (context) =>  ItemBox(value: ['a']));
                         final result = await Navigator.of(context).push(route);
-                        if (result != null)
                         setState(() {
                             itemsDe.add(result);});
                       },
@@ -173,17 +188,13 @@ class Item_Details extends State<ItemDetails>{
                           final result = await Navigator.of(context).push(route);
                           if (result != null)
                             setState(() {
-                              if (result[6]!='m'){
-                              itemsDe.add(result);}
-                              else
-                                {
                                   itemsDe[result[7]-1][0]=result[0];
                                   itemsDe[result[7]-1][1]=result[1];
                                   itemsDe[result[7]-1][2]=result[2];
                                   itemsDe[result[7]-1][3]=result[3];
                                   itemsDe[result[7]-1][4]=result[4];
                                   itemsDe[result[7]-1][5]=result[5];
-                                }
+
                             });
                         },
                         child: new Container(
@@ -250,7 +261,7 @@ class Item_Details extends State<ItemDetails>{
                                 child: new Container (
                                   padding: EdgeInsets.only( top: 2.0, bottom: 2.0),
                                   child: new Icon(Icons.delete, size: 18.0,),
-                                  width: 20.0,
+                                  width: 160.0,
                                   height: 20.0,
                                 ),
                               ),
