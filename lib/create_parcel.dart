@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './item_details.dart';
+import './create_parcel_add_traveler.dart';
 import 'dart:async';
 import './my_parcels.dart';
 import './globals.dart' as globals;
@@ -326,15 +327,6 @@ class Create_Parcel extends State<CreateParcel>{
                             new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
                             new Text(itemvalues[2].toString()+" €     ", style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
                             new Icon(Icons.arrow_right, color: const Color(0xFFF09731),),
-                            /*new IconButton(icon: new Icon(Icons.arrow_right, color: const Color(0xFFF09731),),
-                              onPressed: () async {
-                              final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetails()));
-                              if (result != null)
-                                setState(() {
-                                  itemvalues.removeRange(0, 2);
-                                  itemvalues = result;
-                                });
-                              },),*/
                           ],
                         ),
                     ),
@@ -449,15 +441,14 @@ class Create_Parcel extends State<CreateParcel>{
               ),
             ),
             new Container(
-              padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
+              padding: const EdgeInsets.only( top: 10.0),
               child: new Center(
                 child: new Container(
                   padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
                   child: new Material(
                     child: new InkWell(
                       onTap: (){
-
-                       setState(() {
+                        setState(() {
                          ParcelDet['to'].add(toController.text);
                          ParcelDet['from'].add(fromController.text);
                          ParcelDet['peso'].add(itemvalues[0]);
@@ -474,8 +465,48 @@ class Create_Parcel extends State<CreateParcel>{
                       // parcelDescController.text = globals.allIn.toString() ;
                         Navigator.pop(context);
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Parcels()));
-
-
+                      },
+                      child: new Container(
+                        width: 200.0,
+                        height: 30.0,
+                        decoration: new BoxDecoration(
+                          color: const Color(0xFFFFFFFF),
+                          /*gradient: new LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              const Color(0xFFffd85f),
+                              const Color(0xFFffd85f),
+                            ],
+                          ),*/
+                          border: new Border.all(color: const Color(0xFFEEB473), width: 2.0),
+                          borderRadius: new BorderRadius.circular(10.0),
+                        ),
+                        child: new Center(
+                          child: new Text('Save to Draft',
+                            style: new TextStyle(
+                                fontSize: 13.0,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: "Gibson",
+                                color: const Color(0xFF5a5859)),),
+                        ),
+                      ),
+                    ),
+                    color: Colors.transparent,
+                  ),
+                  //color: const Color(0xFFF09731),
+                ),
+              ),
+            ),
+            new Container(
+              padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
+              child: new Center(
+                child: new Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0),
+                  child: new Material(
+                    child: new InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CreateParcelAddTraveler()));
                       },
                       child: new Container(
                         width: 350.0,

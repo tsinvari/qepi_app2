@@ -57,18 +57,14 @@ class Search extends  State<SearchTraveler> {
         initialDate: _date,
         firstDate: new DateTime(2017),
         lastDate: new DateTime(2019));
-
   }
 
   final fromControllerSearch = TextEditingController();
   final toControllerSearch = TextEditingController();
 
-  var travelers = [  ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018', 
-                                      'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
-                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 
-                                      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'],
-                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 
-                                      'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg']];
+  var travelers = [ ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018', 'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
+                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'],
+                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg']];
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -285,9 +281,9 @@ class Search extends  State<SearchTraveler> {
                                     ),
                                     height: 100.0,
                                     width: 90.0,
-                                    child: Image.network('${travelers[index][6].toString()}'),
-                                    //fit: BoxFit.cover,
-
+                                    child: Image.network(travelers[index][6].toString(),
+                                        fit: BoxFit.cover
+                                    ),
                                   ),
                                 title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
@@ -325,9 +321,7 @@ class Search extends  State<SearchTraveler> {
                                     ],
                                   ),
                                 ],
-
                               )
-
                             ),
                           ],
                         ),
