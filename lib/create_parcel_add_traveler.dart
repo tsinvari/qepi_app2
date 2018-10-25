@@ -34,7 +34,7 @@ class CreateParcelAddTraveler extends StatefulWidget{
 
 class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
     
-  var travelers = [ ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.', '7','5 Kg', '2/2/2018', 'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
+  var travelers = [ ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '7','5 Kg', '2/2/2018', 'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
                   ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'],
                   ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg']];
             
@@ -53,7 +53,7 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
         ),
         backgroundColor: const Color(0xFFfcf9f4),
       body: new Container(
-        child: new ListView(
+        child: new Column(
           children: <Widget>[
             new Card(
               child: new Container(
@@ -109,7 +109,7 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                   ),
               ),
             ),
-            new Expanded(
+           new Expanded(
               child: new Container(
                 //padding: const EdgeInsets.symmetric(horizontal: 3.0, ),
                 color: const Color(0xFFfcf9f4),
@@ -133,7 +133,7 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                                     ),
                                     height: 100.0,
                                     width: 90.0,
-                                    child: Image.network(travelers[index][6].toString(),
+                                    child: Image.network(travelers[index][7].toString(),
                                         fit: BoxFit.cover
                                     ),
                                   ),
@@ -180,7 +180,9 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                         ),
                     );
                   },
-                ),),)
+                ),
+              ),
+            ),
           ],
         ),
       ),
