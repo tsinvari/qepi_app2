@@ -33,13 +33,49 @@ class CreateParcelAddTraveler extends StatefulWidget{
 }
 
 class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
-    
-  var travelers = [ ['Quentin LEGRAND', '1','Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '7','5 Kg', '2/2/2018', 'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'],
-                  ['Ne Michel', '4', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'],
-                  ['Jenny Murillo', '2', 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.','Paris', '17','15 Kg', '2/2/2017', 'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg']];
+
+  Map <String, String> travelerMap0 = {
+    'nombre': 'Quentin LEGRAND',
+    'rating' : '1',
+    'description': 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.',
+    'destino': 'Paris',
+    'peso': '7',
+    'precio': '5',
+    'fecha': '2/2/2018',
+    'fotourl': 'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'
+  };
+
+  Map <String, String> travelerMap1 = {
+    'nombre': 'Ne Michel',
+    'rating' : '5',
+    'description': 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.',
+    'destino': 'Paris',
+    'peso': '7',
+    'precio': '5',
+    'fecha': '2/2/2018',
+    'fotourl': 'https://miro.medium.com/fit/c/240/240/1*3zxB2OgCppepkCZbhQAEgA.jpeg'
+  };
+
+  Map <String, String> travelerMap2 = {
+    'nombre': 'Jenny Murillo',
+    'rating' : '4',
+    'description': 'Super experienced mentor  and some useful content posts that have really helped me develop my skills.',
+    'destino': 'Paris',
+    'peso': '7',
+    'precio': '5',
+    'fecha': '2/2/2018',
+    'fotourl': 'https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg'
+  };
+
+  var travelers = [];
             
   @override
   Widget build(BuildContext context) {
+    travelinit(){setState(() {
+      travelers = [travelerMap0,travelerMap1,travelerMap2];
+    });
+    }
+    travelinit();
     return new Scaffold(
         appBar: new AppBar(
           backgroundColor: const Color(0xFFF09731),
@@ -120,7 +156,8 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                     return new Card(
                         child: new InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailTraveler()));
+                          var enviar = [travelers[index]['nombre'],travelers[index]['rating'], travelers[index]['fotourl']];
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailTraveler(value: enviar,)));
                         },
                         child: new Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -133,11 +170,11 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                                     ),
                                     height: 100.0,
                                     width: 90.0,
-                                    child: Image.network(travelers[index][7].toString(),
+                                    child: Image.network(travelers[index]['fotourl'].toString(),
                                         fit: BoxFit.cover
                                     ),
                                   ),
-                                title: new Text(travelers[index][0], style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
+                                title: new Text(travelers[index]['nombre'], style: new TextStyle(fontSize: 14.0, fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                                 subtitle: new Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,7 +183,7 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                                   new Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: List.generate(5, (i){
-                                      if (i < int.tryParse(travelers[index][1])) {
+                                      if (i < int.tryParse(travelers[index]['rating'])) {
                                          return new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,);
                                         } else {
                                          return new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,);
@@ -155,7 +192,7 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                                   ),
                                   new Container(
                                     padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-                                    child: new Text(travelers[index][2],
+                                    child: new Text(travelers[index]['description'],
                                     style: new TextStyle(fontSize: 13.0,color: const Color(0xFF5A5958),),),
                                   ),
                                   new Row(
@@ -163,13 +200,13 @@ class Create_Parcel_Add_Traveler extends  State<CreateParcelAddTraveler> {
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: <Widget>[
                                       new Icon(const IconData(0xe800, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][3]+" Kg", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index]['peso']+" Kg", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                       new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe806, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][4]+" €", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index]['precio']+" €", style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                       new PetitVerticalDivider(),
                                       new Icon(const IconData(0xe801, fontFamily: "QepiIcons"), color: const Color(0xFF5a5859),),
-                                      new Text(travelers[index][5], style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
+                                      new Text(travelers[index]['fecha'], style: new TextStyle(fontSize: 12.0, color: const Color(0xFF5A5958),),),
                                     ],
                                   ),
                                 ],

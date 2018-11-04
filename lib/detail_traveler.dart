@@ -25,7 +25,27 @@ class HorizontalDivider extends StatelessWidget {
   }
 }
 
-class DetailTraveler extends StatelessWidget{
+class DetailTraveler extends StatefulWidget{
+  final List value;
+  @override
+  DetailTraveler({Key key, this.value,}) : super (key: key);
+  Detail_Traveler createState()=> Detail_Traveler();
+}
+
+class Detail_Traveler extends State<DetailTraveler>{
+
+  var travelDe = [];
+  void initState() {
+    super.initState();
+    var result = widget.value;
+    //  var result1 = '${widget.value}';
+    if (result.length > 0)
+    {
+      travelDe = result;
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -65,11 +85,11 @@ class DetailTraveler extends StatelessWidget{
                             //padding: EdgeInsets.only(bottom: 15.0, top: 15.0, left: 15.0, right: 15.0),
                             child: //new Icon(Icons.person, color: const Color(0xFF5a5859), size: 25.0,)
                             Image.network(
-                                      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg',
+                                      travelDe[2],
                                         fit: BoxFit.cover
                                     ),
                         ),
-                        title: new Text("Ne MICHEL", style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
+                        title: new Text(travelDe[0], style: new TextStyle(fontSize: 14.0,fontFamily: "Gibson",fontWeight: FontWeight.bold,),),
                         subtitle: new Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +98,7 @@ class DetailTraveler extends StatelessWidget{
                             new Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: List.generate(5, (i){
-                                  if (i < int.tryParse('4')) {
+                                  if (i < int.tryParse(travelDe[1])) {
                                     return new Icon(Icons.star, color: const Color(0xFFF1BD79), size: 20.0,);
                                   } else {
                                     return new Icon(Icons.star_border, color: const Color(0xFFF1BD79), size: 20.0,);
@@ -115,7 +135,7 @@ class DetailTraveler extends StatelessWidget{
                     ),
                     new Container(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-                      child: new Text("Hola, soy Rene Michel, soy boliviano y vivo en Strasbourg desde hace un anio porque estoy estudiando en la UNISTRA. Voy a Bolivia eventualmente a visitar a mi familia. Me encantará llevar tu paquete.",
+                      child: new Text("Hola, soy "+travelDe[0]+", soy boliviano y vivo en Strasbourg desde hace un anio porque estoy estudiando en la UNISTRA. Voy a Bolivia eventualmente a visitar a mi familia. Me encantará llevar tu paquete.",
                         style: new TextStyle(fontSize: 14.0,color: const Color(0xFF5A5958),),),
                     ),
                     new Row(
@@ -145,7 +165,7 @@ class DetailTraveler extends StatelessWidget{
                       child: new Row(
                         children: <Widget>[
                           new Flexible(
-                            child: new Text("Rene llevo mi paquete de Strasbourg a La Paz., algunas cosas para la familia. Todo llego conforme y puntual",
+                            child: new Text(travelDe[0]+" llevo mi paquete de Strasbourg a La Paz., algunas cosas para la familia. Todo llego conforme y puntual",
                               style: TextStyle(color: const Color(0xFF5A5859),),
                               maxLines: 5,
                               overflow: TextOverflow.ellipsis,

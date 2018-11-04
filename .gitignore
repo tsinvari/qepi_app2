@@ -5,6 +5,7 @@
 .pub/
 .idea/
 build/
+.vscode/
 
 .flutter-plugins
 
